@@ -6,6 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('maps');
+  this.route('segments');
+  this.route('segment', { path: '/segments/:linkHash' });
 });
 
 export default Router;

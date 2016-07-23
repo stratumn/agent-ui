@@ -1,0 +1,12 @@
+<ul class="list-group">
+  {{#each segments as |segment|}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-md-6">{{segment.meta.linkHash}}</div>
+      <div class="col-md-6 text-md-right">
+        <a class="btn btn-secondary btn-sm" href="/segments/{{segment.meta.linkHash}}">View segment</a>
+      </div>
+    </div>
+  </li>
+  {{/each}}
+</ul>

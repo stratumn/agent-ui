@@ -1,0 +1,16 @@
+<h5>Create map</h5>
+<form class="m-t-2">
+  {{#each args as |arg|}}
+  <div class="form-group row">
+    <label for="{{arg}}" class="col-sm-5 form-control-label">{{arg.name}}</label>
+    <div class="col-sm-7">
+      {{input type="text" class="form-control" id=arg.name placeholder="value" value=arg.value}}
+    </div>
+  </div>
+  {{/each}}
+  <div class="form-group row">
+    <div class="col-sm-offset-5 col-sm-7">
+      <button type="submit" class="btn btn-primary" {{action "createMap"}}>Submit</button>
+    </div>
+  </div>
+</form>

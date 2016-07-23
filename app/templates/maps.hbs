@@ -1,0 +1,16 @@
+<div class="container m-t-2">
+  <div class="row">
+    <div class="col-md-4">
+      {{maps-create args=model.createMapArgs onSubmit=(action "userDidCreateMap")}}
+    </div>
+    <div class="col-md-8">
+      {{maps-list maps=model.maps}}
+      <nav>
+        <ul class="pager text-md-left">
+          <li class="{{if firstPage 'disabled'}}">{{#link-to 'maps' (query-params page=prevPage)}}Previous{{/link-to}}</li>
+          <li class="{{if lastPage 'disabled'}}">{{#link-to 'maps' (query-params page=nextPage)}}Next{{/link-to}}</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
