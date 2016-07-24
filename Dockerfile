@@ -2,8 +2,11 @@ FROM node:6
 
 RUN mkdir /agent-ui
 
+RUN npm install -g bower
+
 ADD package.json /agent-ui/package.json
-RUN cd /agent-ui; npm install
+ADD bower.json /agent-ui/bower.json
+RUN cd /agent-ui; npm install && bower install
 ADD . /agent-ui/
 
 WORKDIR /agent-ui
