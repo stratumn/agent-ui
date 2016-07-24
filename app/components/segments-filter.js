@@ -7,7 +7,7 @@ export default Ember.Component.extend({
         map: this.get('map') || '',
         prev: this.get('prev') || '',
         tags: this.get('tags') ? this.get('tags').split(' ').join(',') : ''
-      }
+      };
       this.get('onSubmit')(filter);
     }
   }

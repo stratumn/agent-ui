@@ -22,9 +22,9 @@ export default Ember.Route.extend({
       .then(agent => {
         const page = params.page - 1;
         const filter = { offset: page * 20, limit: 20 };
-        if (params.map) filter.mapId = params.map;
-        if (params.prev) filter.prevLinkHash = params.prev;
-        if (params.tags) filter.tags = params.tags;
+        if (params.map) { filter.mapId = params.map; }
+        if (params.prev) { filter.prevLinkHash = params.prev; }
+        if (params.tags) { filter.tags = params.tags; }
         return agent.findSegments(filter);
       }).then(segments => {
         return {
@@ -36,7 +36,7 @@ export default Ember.Route.extend({
       });
   },
 
-  resetController(controller, isExiting, transition) {
+  resetController(controller, isExiting) {
     if (isExiting) {
       controller.set('page', 1);
       controller.set('map', '');
