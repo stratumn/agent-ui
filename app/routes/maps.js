@@ -7,8 +7,6 @@ export default Ember.Route.extend({
     }
   },
 
-  page: 1,
-
   model(params) {
     let agent;
 
@@ -26,5 +24,11 @@ export default Ember.Route.extend({
         }));
         return { agent, maps, createMapArgs };
       });
+  },
+
+  resetController(controller, isExiting, transition) {
+    if (isExiting) {
+      controller.set('page', 1);
+    }
   }
 });

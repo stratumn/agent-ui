@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-6">{{segment.meta.linkHash}}</div>
       <div class="col-md-6 text-md-right">
-        <a class="btn btn-secondary btn-sm" href="/segments/{{segment.meta.linkHash}}">View segment</a>
+        {{#link-to 'segment' segment.meta.linkHash class="btn btn-secondary btn-sm"}}View segment{{/link-to}}
       </div>
     </div>
   </li>

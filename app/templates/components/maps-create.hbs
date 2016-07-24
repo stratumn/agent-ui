@@ -2,7 +2,7 @@
 <form class="m-t-2">
   {{#each args as |arg|}}
   <div class="form-group row">
-    <label for="{{arg}}" class="col-sm-5 form-control-label">{{arg.name}}</label>
+    <label for="{{arg.name}}" class="col-sm-5 form-control-label">{{arg.name}}</label>
     <div class="col-sm-7">
       {{input type="text" class="form-control" id=arg.name placeholder="value" value=arg.value}}
     </div>
