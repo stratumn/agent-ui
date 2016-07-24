@@ -7,13 +7,15 @@ module.exports = function(defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        'bower_components/bootstrap/scss'
+        'bower_components/bootstrap/scss',
+        'bower_components/highlightjs/styles'
       ]
     }
   });
 
   app.import('bower_components/tether/dist/js/tether.js');
   app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+  app.import('bower_components/highlightjs/highlight.pack.js');
   app.import('bower_components/stratumn-sdk/dist/stratumn-sdk.js');
 
   // Use `app.import` to add additional libraries to the generated

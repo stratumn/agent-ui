@@ -1,21 +1,21 @@
 <div class="row">
   <div class="col-md-8">
-    <h5 class="m-b-2">Segment details</h5>
+    <h4 class="m-b-2">Segment details</h4>
   </div>
   {{segment-links class="col-md-4" segment=segment}}
 </div>
 
-<h6>Link hash</h6>
+<h5>Link hash</h5>
 <samp>{{segment.meta.linkHash}}</samp>
-<h6 class="m-t-1">Map ID</h6>
+<h5 class="m-t-1">Map ID</h5>
 <samp>{{segment.link.meta.mapId}}</samp>
-<h6 class="m-t-1">State hash</h6>
+<h5 class="m-t-1">State hash</h5>
 <samp>{{segment.link.meta.stateHash}}</samp>
 {{#if segment.link.meta.prevLinkHash}}
-  <h6 class="m-t-1">Previous link hash</h6>
+  <h5 class="m-t-1">Previous link hash</h5>
   <samp>{{segment.link.meta.prevLinkHash}}</samp>
 {{/if}}
-<h6 class="m-t-1">Action</h6>
+<h5 class="m-t-1">Action</h5>
 <samp>{{segment.action}}</samp>
-<h6 class="m-t-1">Raw JSON</h6>
-<pre>{{segment.json}}</pre>
+<h5 class="m-t-1">Raw JSON</h5>
+<pre><code class="json">{{segment.json}}</code></pre>

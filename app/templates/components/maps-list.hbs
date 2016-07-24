@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <h5 class="m-b-2">Map IDs</h5>
+  <h4 class="m-b-2">Map IDs</h4>
   {{#each maps as |map|}}
   <li class="list-group-item">
     <samp>{{#link-to 'segments' (query-params map=map)}}{{map}}{{/link-to}}</samp>

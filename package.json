@@ -43,7 +43,6 @@
     "loader.js": "^4.0.1"
   },
   "dependencies": {
-    "express": "^4.14.0",
-    "stratumn-sdk": "^1.0.2"
+    "express": "^4.14.0"
   }
 }
