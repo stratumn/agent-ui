@@ -6,7 +6,7 @@ RUN npm install -g bower
 
 ADD package.json /agent-ui/package.json
 ADD bower.json /agent-ui/bower.json
-RUN cd /agent-ui; npm install && bower install
+RUN cd /agent-ui; npm install && bower install --allow-root
 ADD . /agent-ui/
 
 WORKDIR /agent-ui
