@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'agent-ui/config/environment';
 
 export default Ember.Route.extend({
   queryParams: {
@@ -11,7 +12,7 @@ export default Ember.Route.extend({
     let agent;
 
     return StratumnSDK
-      .getAgent('http://localhost:3000')
+      .getAgent(ENV.APP.AGENT_URL)
       .then(res => {
         agent = res;
         const page = params.page - 1;

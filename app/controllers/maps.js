@@ -1,10 +1,11 @@
 import Ember from 'ember';
+import ENV from 'agent-ui/config/environment';
 
 export default Ember.Controller.extend({
   actions: {
     userDidCreateMap(args) {
       return StratumnSDK
-        .getAgent('http://localhost:3000')
+        .getAgent(ENV.APP.AGENT_URL)
         .then(agent => {
           return agent.createMap(...args);
         })

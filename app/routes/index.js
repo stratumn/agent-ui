@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import ENV from 'agent-ui/config/environment';
 
 export default Ember.Route.extend({
   model() {
     return StratumnSDK
-      .getAgent('http://localhost:3000')
+      .getAgent(ENV.APP.AGENT_URL)
       .then(agent => {
         agent.actions = Object
           .keys(agent.agentInfo.functions)
