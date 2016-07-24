@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  selectedActionName: Ember.computed('selectedAction', 'appendActions', function() {
+    return this.get('appendActions')[this.get('selectedAction')].name;
+  }),
+
   didReceiveAttrs() {
     this._super(...arguments);
     this.set('selectedAction', 0);
