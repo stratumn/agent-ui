@@ -1,2 +1,9 @@
 @import "variables";
 @import "bootstrap";
+
+.navbar-brand {
+	background: url(/assets/images/logo.svg) no-repeat;
+	background-size: auto 100%;
+	text-indent: -5000px;
+	width: 40px;
+}
