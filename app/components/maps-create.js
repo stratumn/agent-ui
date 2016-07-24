@@ -1,11 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  args: [],
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.resetArgs();
+  },
+
+  didUpdateAttrs() {
+    this._super(...arguments);
+    this.resetArgs();
+  },
 
   actions: {
-    createMap() {
-      this.get('onSubmit')(this.get('args').map(a => a.value));
-    }
-  }
+    createMap() { this.get('onSubmit')(...this.get('args').map(arg => arg.value)); }
+  },
+
+  resetArgs() { this.set('args', this.get('action').args.map(name => ({ name }))); }
 });

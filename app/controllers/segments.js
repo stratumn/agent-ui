@@ -8,33 +8,22 @@ export default Ember.Controller.extend({
   },
 
   page: 1,
-
   map: '',
-
   prev: '',
-
   tags: '',
 
   queryParams: ['page', 'map', 'prev', 'tags'],
 
   prevPage: Ember.computed('page', function() {
     const page = this.get('page');
-
-    if (page > 1) {
-      return page - 1;
-    }
-
+    if (page > 1) { return page - 1; }
     return page;
   }),
 
   nextPage: Ember.computed('page', 'model', function() {
     const page = this.get('page');
     const model = this.get('model');
-
-    if (model.segments.length >= 20) {
-      return page + 1;
-    }
-
+    if (model.segments.length >= 20) { return page + 1; }
     return page;
   }),
 

@@ -6,7 +6,7 @@
   {{/if}}
   <div class="row">
     <div class="col-md-4">
-      {{maps-create args=model.createMapArgs onSubmit=(action "userDidCreateMap")}}
+      {{maps-create action=model.agent.actions.[0] onSubmit=(action "userDidCreateMap")}}
     </div>
     <div class="col-md-8">
       {{maps-list maps=model.maps}}

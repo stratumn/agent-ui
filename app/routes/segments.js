@@ -4,18 +4,10 @@ export default Ember.Route.extend({
   stratumn: Ember.inject.service('stratumn'),
 
   queryParams: {
-    page: {
-      refreshModel: true
-    },
-    map: {
-      refreshModel: true
-    },
-    prev: {
-      refreshModel: true
-    },
-    tags: {
-      refreshModel: true
-    }
+    page: { refreshModel: true },
+    map: { refreshModel: true },
+    prev: { refreshModel: true },
+    tags: { refreshModel: true }
   },
 
   model(params) {

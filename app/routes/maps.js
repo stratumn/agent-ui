@@ -3,11 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   stratumn: Ember.inject.service('stratumn'),
 
-  queryParams: {
-    page: {
-      refreshModel: true
-    }
-  },
+  queryParams: { page: { refreshModel: true } },
 
   model(params) {
     let agent;
@@ -17,16 +13,9 @@ export default Ember.Route.extend({
       .getAgent()
       .then(res => {
         agent = res;
-        const page = params.page - 1;
-        return agent.getMapIds({ offset: page * 20, limit: 20 });
+        return agent.getMapIds({ offset: (params.page - 1) * 20, limit: 20 });
       })
-      .then(maps => { 
-        const createMapArgs = agent.agentInfo.functions.init.args.map(arg => ({
-          name: arg,
-          value: ''
-        }));
-        return { agent, maps, createMapArgs };
-      });
+      .then(maps => ({ agent, maps });
   },
 
   resetController(controller, isExiting) {
