@@ -1,14 +1,14 @@
 <h5>Link hash</h5>
-<p>{{segment.meta.linkHash}}</p>
-<h5>Map ID</h5>
-<p>{{segment.link.meta.mapId}}</p>
-<h5>State hash</h5>
-<p>{{segment.link.meta.stateHash}}</p>
+<samp>{{segment.meta.linkHash}}</samp>
+<h5 class="m-t-1">Map ID</h5>
+<samp>{{segment.link.meta.mapId}}</samp>
+<h5 class="m-t-1">State hash</h5>
+<samp>{{segment.link.meta.stateHash}}</samp>
 {{#if segment.link.meta.prevLinkHash}}
-  <h5>Previous link hash</h5>
-  <p>{{segment.link.meta.prevLinkHash}}</p>
+  <h5 class="m-t-1">Previous link hash</h5>
+  <samp>{{segment.link.meta.prevLinkHash}}</samp>
 {{/if}}
-<h5>Action</h5>
-<p>{{segment.action}}</p>
-<h5>Raw JSON</h5>
+<h5 class="m-t-1">Action</h5>
+<samp>{{segment.action}}</samp>
+<h5 class="m-t-1">Raw JSON</h5>
 <pre>{{segment.json}}</pre>

@@ -1,12 +1,7 @@
 <ul class="list-group">
   {{#each maps as |map|}}
   <li class="list-group-item">
-    <div class="row">
-      <div class="col-md-6">{{map}}</div>
-      <div class="col-md-6 text-md-right">
-        {{#link-to 'segments' (query-params map=map) class="btn btn-secondary btn-sm"}}View segments{{/link-to}}
-      </div>
-    </div>
+    <samp>{{#link-to 'segments' (query-params map=map)}}{{map}}{{/link-to}}</samp>
   </li>
   {{/each}}
 </ul>

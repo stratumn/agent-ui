@@ -1,13 +1,12 @@
-<div class="card">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      {{#link-to 'segments' (query-params map=segment.link.meta.mapId) class="nav-link"}}View map segments{{/link-to}}
-    </li>
-    <li class="list-group-item">
-      {{#link-to 'segments' (query-params prev=segment.meta.linkHash) class="nav-link"}}View branches{{/link-to}}
-    </li>
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick links
+  </button>
+  <div class="dropdown-menu">
+    {{#link-to 'segments' (query-params map=segment.link.meta.mapId) class="dropdown-item"}}View map segments{{/link-to}}
+    {{#link-to 'segments' (query-params prev=segment.meta.linkHash) class="dropdown-item"}}View branches{{/link-to}}
     {{#if segment.link.meta.prevLinkHash}}
-    {{#link-to 'segment' segment.link.meta.prevLinkHash class="nav-link"}}View previous segment{{/link-to}}
+      {{#link-to 'segment' segment.link.meta.prevLinkHash class="dropdown-item"}}View previous segment{{/link-to}}
     {{/if}}
-  </ul>
+  </div>
 </div>
