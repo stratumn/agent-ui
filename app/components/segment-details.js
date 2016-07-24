@@ -5,9 +5,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   didRender() {
-    $('pre code').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
+    // Binding doesn't seem to work with highlight js
+    hljs.highlightBlock($('pre code').html(this.get('segment').json).get(0));
   }
 
 });
