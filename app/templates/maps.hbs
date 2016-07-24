@@ -1,4 +1,9 @@
 <div class="container m-t-2">
+  {{#if error}}
+    <div class="alert alert-danger" role="alert">
+      <strong>Error {{error.status}}:</strong> {{error.message}}
+    </div>
+  {{/if}}
   <div class="row">
     <div class="col-md-4">
       {{maps-create args=model.createMapArgs onSubmit=(action "userDidCreateMap")}}

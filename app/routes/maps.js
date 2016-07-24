@@ -30,6 +30,7 @@ export default Ember.Route.extend({
   resetController(controller, isExiting) {
     if (isExiting) {
       controller.set('page', 1);
+      controller.set('error');
     }
   }
 });
