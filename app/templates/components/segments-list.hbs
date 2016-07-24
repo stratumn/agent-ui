@@ -1,4 +1,5 @@
 <ul class="list-group">
+  <h5 class="m-b-2">Link hashes</h5>
   {{#each segments as |segment|}}
   <li class="list-group-item">
     <samp>{{#link-to 'segment' segment.meta.linkHash}}{{segment.meta.linkHash}}{{/link-to}}</samp>

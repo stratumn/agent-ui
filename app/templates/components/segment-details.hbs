@@ -1,14 +1,21 @@
-<h5>Link hash</h5>
+<div class="row">
+  <div class="col-md-8">
+    <h5 class="m-b-2">Segment details</h5>
+  </div>
+  {{segment-links class="col-md-4" segment=segment}}
+</div>
+
+<h6>Link hash</h6>
 <samp>{{segment.meta.linkHash}}</samp>
-<h5 class="m-t-1">Map ID</h5>
+<h6 class="m-t-1">Map ID</h6>
 <samp>{{segment.link.meta.mapId}}</samp>
-<h5 class="m-t-1">State hash</h5>
+<h6 class="m-t-1">State hash</h6>
 <samp>{{segment.link.meta.stateHash}}</samp>
 {{#if segment.link.meta.prevLinkHash}}
-  <h5 class="m-t-1">Previous link hash</h5>
+  <h6 class="m-t-1">Previous link hash</h6>
   <samp>{{segment.link.meta.prevLinkHash}}</samp>
 {{/if}}
-<h5 class="m-t-1">Action</h5>
+<h6 class="m-t-1">Action</h6>
 <samp>{{segment.action}}</samp>
-<h5 class="m-t-1">Raw JSON</h5>
+<h6 class="m-t-1">Raw JSON</h6>
 <pre>{{segment.json}}</pre>

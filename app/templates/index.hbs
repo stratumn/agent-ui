@@ -1,6 +1,8 @@
 <div class="container m-t-2">
   <div class="row">
     <div class="col-lg-8">
+      <h5>Agent endpoint</h5>
+      <p><a href="{{model.url}}" target="_blank">{{model.url}}</a></p>
       <h5>Actions</h5>
       <ul>
         {{#each model.actions as |action|}}
@@ -8,11 +10,24 @@
         {{/each}}
       </ul>
       <h5>Store adapter name</h5>
-      <p>{{model.storeInfo.adapter.name}}</p>
+      <p><samp>{{model.storeInfo.adapter.name}}</samp></p>
       <h5>Store adapter version</h5>
-      <p>{{model.storeInfo.adapter.version}}</p>
+      <p><samp>{{model.storeInfo.adapter.version}}</samp></p>
       <h5>Store adapter description</h5>
-      <p>{{model.storeInfo.adapter.description}}</p>
+      <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
+    </div>
+    <div class="col-lg-4">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="nav-item">
+          <a class="nav-link" href="http://developer.stratumn.com" target="_blank">Developer HUB</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/stratumn/agent-template-js" target="_blank">Agent template</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/stratumn/stratumn-sdk-js/tree/alpha" target="_blank">Javascript SDK</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
