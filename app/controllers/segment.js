@@ -10,7 +10,10 @@ export default Ember.Controller.extend({
         .getAgent()
         .then(agent => agent.getSegment(linkHash))
         .then(segment => segment[action](...args))
-        .then(segment => this.transitionToRoute('segment', segment.meta.linkHash))
+        .then(segment => {
+          this.set('error');
+          this.transitionToRoute('segment', segment.meta.linkHash);
+        })
         .catch(err => this.set('error', err));
     }
   }
