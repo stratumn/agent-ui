@@ -1,7 +1,8 @@
 import Ember from 'ember';
-import ENV from 'agent-ui/config/environment';
 
 export default Ember.Route.extend({
+  stratumn: Ember.inject.service('stratumn'),
+
   queryParams: {
     page: {
       refreshModel: true
@@ -11,8 +12,9 @@ export default Ember.Route.extend({
   model(params) {
     let agent;
 
-    return StratumnSDK
-      .getAgent(ENV.APP.AGENT_URL)
+    return this
+      .get('stratumn')
+      .getAgent()
       .then(res => {
         agent = res;
         const page = params.page - 1;
