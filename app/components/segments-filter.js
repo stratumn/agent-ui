@@ -9,6 +9,10 @@ export default Ember.Component.extend({
         tags: this.get('tags') && this.get('tags').split(' ').join(',')
       };
       this.get('onSubmit')(filter);
+    },
+
+    clearFilter() {
+      this.get('onSubmit')({ map: '', prev: '', tags: '' });
     }
   }
 });
