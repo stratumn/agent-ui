@@ -1,12 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  actions: {
-    userDidUpdateFilter(filter) {
-      this.transitionToRoute('segments', { queryParams: filter });
-    }
-  },
-
   page: 1,
   map: '',
   prev: '',
@@ -33,5 +27,11 @@ export default Ember.Controller.extend({
 
   lastPage: Ember.computed('page', 'model', function() {
     return this.get('model').segments.length < 20;
-  })
+  }),
+
+  actions: {
+    userDidUpdateFilter(filter) {
+      this.transitionToRoute('segments', { queryParams: filter });
+    }
+  }
 });

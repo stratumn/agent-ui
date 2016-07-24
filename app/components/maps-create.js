@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    createMap() { this.get('onSubmit')(...this.get('args').map(arg => arg.value)); }
+    createMap() { this.get('onSubmit')(...this.get('args').map(arg => arg.value || null)); }
   },
 
   resetArgs() { this.set('args', this.get('action').args.map(name => ({ name }))); }

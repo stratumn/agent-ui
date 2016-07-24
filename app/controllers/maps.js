@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
       return this
         .get('stratumn')
         .getAgent()
-        .then(agent =>  agent.createMap(...args))
+        .then(agent => agent.createMap(...args))
         .then(segment => this.transitionToRoute('segment', segment.meta.linkHash))
         .catch(err => this.set('error', err));
     }

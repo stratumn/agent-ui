@@ -1,0 +1,27 @@
+<h5>Append segment</h5>
+<form class="m-t-2">
+  <div class="form-group row">
+    <label for="selectedAction" class="col-sm-5 form-control-label">Action</label>
+    <div class="col-sm-7">
+      <select class="form-control" id="selectedAction" style="margin-top: .5em" onchange={{action "selectAppendAction" value="target.value"}}>
+        {{#each appendActions as |appendAction index|}}
+          <option value="{{index}}" selected="{{if (eql selectedAction index) 'selected'}}">{{appendAction.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  {{#each args as |arg|}}
+  <div class="form-group row">
+    <label for="{{arg.name}}" class="col-sm-5 form-control-label">{{arg.name}}</label>
+    <div class="col-sm-7">
+      {{input type="text" class="form-control" id=arg.name placeholder="value" value=arg.value}}
+    </div>
+  </div>
+  {{/each}}
+  <div class="form-group row">
+    <div class="col-sm-offset-5 col-sm-7">
+      <button type="submit" class="btn btn-primary" {{action "appendSegment"}}>Submit</button>
+    </div>
+  </div>
+</form>
+

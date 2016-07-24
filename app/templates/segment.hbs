@@ -1,10 +1,18 @@
 <div class="container m-t-2">
+  {{#if error}}
+    <div class="alert alert-danger" role="alert">
+      <strong>Error {{error.status}}:</strong> {{error.message}}
+    </div>
+  {{/if}}
   <div class="row">
     <div class="col-md-4">
-      {{segment-links segment=model}}
+      {{#if model.appendActions.length}}
+        {{segment-append appendActions=model.appendActions segment=model.segment  onSubmit=(action "userDidAppendSegment")}}
+      {{/if}}
     </div>
     <div class="col-md-8">
-      {{segment-details segment=model}}
+      {{segment-links segment=model.segment class="m-b-2"}}
+      {{segment-details segment=model.segment}}
     </div>
   </div>
 </div>

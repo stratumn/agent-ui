@@ -15,7 +15,7 @@ export default Ember.Route.extend({
         agent = res;
         return agent.getMapIds({ offset: (params.page - 1) * 20, limit: 20 });
       })
-      .then(maps => ({ agent, maps });
+      .then(maps => ({ agent, maps }));
   },
 
   resetController(controller, isExiting) {
