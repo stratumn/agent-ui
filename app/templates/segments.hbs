@@ -4,13 +4,18 @@
       {{segments-filter map=model.map prev=model.prev tags=model.tags onSubmit=(action "userDidUpdateFilter")}}
     </div>
     <div class="col-md-8">
-      {{segments-list segments=model.segments}}
-       <nav>
-        <ul class="pager text-md-left">
-          <li class="{{if firstPage 'disabled'}}">{{#link-to 'segments' (query-params page=prevPage)}}Previous{{/link-to}}</li>
-          <li class="{{if lastPage 'disabled'}}">{{#link-to 'segments' (query-params page=nextPage)}}Next{{/link-to}}</li>
-        </ul>
-      </nav>
+      {{#if model.segments.length}}
+        {{segments-list segments=model.segments}}
+         <nav>
+          <ul class="pager text-md-left">
+            <li class="{{if firstPage 'disabled'}}">{{#link-to 'segments' (query-params page=prevPage)}}Previous{{/link-to}}</li>
+            <li class="{{if lastPage 'disabled'}}">{{#link-to 'segments' (query-params page=nextPage)}}Next{{/link-to}}</li>
+          </ul>
+        </nav>
+      {{else}}
+        <h4>Nothing to see here</h4>
+        <p><small class="text-muted">No matching segments were found.</small></p>
+      {{/if}}
     </div>
   </div>
 </div>{{outlet}}
