@@ -24,10 +24,17 @@ export default Ember.Component.extend({
     },
 
     appendSegment() {
+      const args = this.get('args').map(arg => {
+        let val = arg.value;
+        if (!val) { return null};
+        try { val = JSON.parse(val); }
+        catch (err) { }
+        return val;
+      });
       this.get('onSubmit')(
         this.get('segment').meta.linkHash,
         this.get('appendActions')[this.get('selectedAction')].name,
-        ...this.get('args').map(arg => arg.value || null)
+        ...args
       );
     }
   },
