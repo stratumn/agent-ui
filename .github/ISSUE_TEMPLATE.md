@@ -2,8 +2,10 @@
 
 ### Actual behavior
 
-### Information about the Issue
+### Information about the issue
 
+  - Operating system
+  - Browser
 
 ### Steps to reproduce the behavior
 
