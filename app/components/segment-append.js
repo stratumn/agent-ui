@@ -26,7 +26,7 @@ export default Ember.Component.extend({
     appendSegment() {
       const args = this.get('args').map(arg => {
         let val = arg.value;
-        if (!val) { return null};
+        if (!val) { return null; }
         try { val = JSON.parse(val); }
         catch (err) { }
         return val;

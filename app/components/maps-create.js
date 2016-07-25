@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     createMap() {
       const args = this.get('args').map(arg => {
         let val = arg.value;
-        if (!val) { return null};
+        if (!val) { return null; }
         try { val = JSON.parse(val); }
         catch (err) { }
         return val;
