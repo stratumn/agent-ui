@@ -1,39 +1,56 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  selectedActionName: Ember.computed('selectedAction', 'appendActions', function() {
-    return this.get('appendActions')[this.get('selectedAction')].name;
-  }),
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('selectedAction', 0);
+    this.set('selectedAppendAction', this.get('appendActions')[0].name);
     this.resetArgs();
   },
 
   didUpdateAttrs() {
     this._super(...arguments);
-    this.set('selectedAction', 0);
+    this.set('selectedAppendAction', this.get('appendActions')[0].name);
     this.resetArgs();
   },
 
   actions: {
-    selectAppendAction(selected) {
-      this.set('selectedAction', selected);
+
+    void() {},
+
+    onClose() {
+      this.get('onClose')();
+    },
+
+    onChangeSelectedAppendAction(value) {
+      if (!value) {
+        return;
+      }
+
+      this.set('selectedAppendAction', value);
       this.resetArgs();
     },
 
-    appendSegment() {
+    onSubmit() {
       const args = this.get('args').map(arg => {
         let val = arg.value;
-        if (!val) { return null; }
-        try { val = JSON.parse(val); }
+
+        if (!val) {
+          return;
+        }
+
+        // See if we can parse the value as JSON.
+        try {
+          val = JSON.parse(val);
+        }
         catch (err) { }
+
         return val;
       });
+
       this.get('onSubmit')(
         this.get('segment').meta.linkHash,
-        this.get('appendActions')[this.get('selectedAction')].name,
+        this.get('appendActions')[this.get('selectedAppendActionIndex')].name,
         ...args
       );
     }
@@ -41,10 +58,13 @@ export default Ember.Component.extend({
 
   resetArgs() {
     const appendActions = this.get('appendActions');
-    if (appendActions.length) {
-      this.set('args', appendActions[this.get('selectedAction')].args.map(name => ({ name })));
-    } else {
-      this.set('args', []);
-    }
+    const selectedAppendAction = this.get('selectedAppendAction');
+
+    const index = appendActions.reduce((prev, curr, i) => {
+      return curr.name === selectedAppendAction ? i : prev;
+    }, -1);
+
+    this.set('selectedAppendActionIndex', index);
+    this.set('args', appendActions[index].args.map(name => ({ name })));
   }
 });

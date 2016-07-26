@@ -8,11 +8,18 @@ function augmentAgent(agent) {
     .map(name => {
       const args = agent.agentInfo.functions[name].args;
       const signature = `${name}(${args.join(', ')})`;
+
       return { name, args, signature };
     })
     .sort((a, b) => {
-      if (a.name === 'init') { return -1; }
-      if (b.name === 'init') { return 1; }
+      if (a.name === 'init') {
+        return -1;
+      }
+
+      if (b.name === 'init') {
+        return 1;
+      }
+
       return a.name.localeCompare(b.name);
     });
 }
@@ -21,7 +28,9 @@ export default Ember.Service.extend({
   agent: null,
 
   getAgent() {
-    if (this.get('agent')) { return Ember.RSVP.Promise.resolve(this.get('agent')); }
+    if (this.get('agent')) {
+      return Ember.RSVP.Promise.resolve(this.get('agent'));
+    }
 
     return StratumnSDK
       .getAgent(ENV.APP.AGENT_URL)

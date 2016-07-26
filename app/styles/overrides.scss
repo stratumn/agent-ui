@@ -1,0 +1,73 @@
+// Make sidebar blue and smaller.
+md-sidenav.site-sidenav {
+  background-color: color($primary);
+  max-width: 260px;
+
+  @media screen and (min-width: 600px) {
+    max-width: 260px;
+  }
+
+  md-content {
+    background: none;
+    color: #fff;
+  }
+
+  md-list-item {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .active md-list-item, md-list-item:hover {
+    background-color: color($primary, '400');;
+  }
+
+  md-divider {
+    margin-left: 0;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .logo {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 64px;
+    background: url(/assets/images/logo.svg) no-repeat 16px center;
+    background-size: 40px auto;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+// Make main toolbar white.
+md-toolbar.md-default-theme.page-main-toolbar {
+  background-color: #fff;
+  color: color($foreground-dark, '1');
+}
+
+md-dialog {
+  min-width: 320px;
+  @media screen and (min-width: 600px) {
+    min-width: 480px;
+  }
+}
+
+md-input-container {
+  margin-bottom: 24px;
+
+  label:not(.md-no-float):not(.md-container-ignore), .md-placeholder {
+    color: color($foreground-dark, '2');
+  }
+
+  .md-errors-spacer {
+    min-height: 0;
+  }
+}
+
+.md-whiteframe-1dp, .md-whiteframe-z1 {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.07), 0px 2px 1px -1px rgba(0, 0, 0, 0.06);
+}

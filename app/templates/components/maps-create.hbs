@@ -1,17 +1,40 @@
-<h4>Create map</h4>
-<p><small class="text-muted">This will call the <sampl>init()</sampl> action of your agent to create the first segment of a map.</small></p>
-<form class="m-t-2">
-  {{#each args as |arg|}}
-  <div class="form-group row">
-    <label for="{{arg.name}}" class="col-sm-5 form-control-label">{{arg.name}}</label>
-    <div class="col-sm-7">
-      {{input type="text" class="form-control" id=arg.name placeholder="value" value=arg.value}}
-    </div>
-  </div>
-  {{/each}}
-  <div class="form-group row">
-    <div class="col-sm-offset-5 col-sm-7">
-      <button type="submit" class="btn btn-primary" {{action "createMap"}}>Submit</button>
-    </div>
-  </div>
-</form>
+{{#paper-dialog clickOutsideToClose=true onClose=(action "onClose")}}
+  {{#paper-form onSubmit=(action "onSubmit") as |form|}}
+    <form {{action "void" on="submit"}}>
+
+      {{#paper-toolbar}}
+        <div class="md-toolbar-tools">
+          <h2>Create map</h2>
+          <span class="flex"></span>
+          {{#paper-button iconButton=true onClick=(action "onClose")}}
+            {{paper-icon icon="close"}}
+          {{/paper-button}}
+        </div>
+      {{/paper-toolbar}}
+
+      {{#paper-dialog-content}}
+        {{#if error}}
+          <p class="error"><strong>Error {{error.status}}:</strong> {{error.message}}</p>
+        {{/if}}
+        {{#each args as |arg|}}
+          {{paper-input
+            block=true
+            label=arg.name
+            value=arg.value
+            onChange=(action (mut arg.value))
+          }}
+        {{/each}}
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        <span class="flex"></span>
+        {{#paper-button
+          type="submit"
+          primary=true
+          onClick=(action form.onSubmit)}}Submit{{/paper-button
+        }}
+      {{/paper-dialog-actions}}
+
+    </form>
+  {{/paper-form}}
+{{/paper-dialog}}

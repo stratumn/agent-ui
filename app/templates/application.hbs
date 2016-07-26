@@ -1,23 +1,50 @@
-<nav class="navbar navbar-full navbar-dark bg-primary">
-  <div class="container">
-    <ul class="nav navbar-nav">
-      {{#link-to 'index' class="navbar-brand"}}Agent UI{{/link-to}}
-      <li class="nav-item">
-        {{#link-to 'index' class="nav-link"}}Agent info{{/link-to}}
-      </li>
-      <li class="nav-item">
-        {{#link-to 'maps' class="nav-link"}}Maps{{/link-to}}
-      </li>
-      <li class="nav-item">
-        {{#link-to 'segments' class="nav-link"}}Segments{{/link-to}}
-      </li>
-    </ul>
-    <ul class="nav navbar-nav pull-xs-right">
-      <li class="nav-item">
-        <a href="https://github.com/stratumn/agent-ui/issues/new" target="_blank" class="nav-link">Report issue</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+{{#paper-sidenav-container class="site-container inner-sidenav"}}
 
-{{outlet}}
+  {{#paper-sidenav
+    class="site-sidenav"
+    open=sideNavOpen
+    onToggle=(action (mut sideNavOpen))
+  }}
+    {{#paper-content class="flex layout-column"}}
+
+      {{#paper-toolbar class="logo"}}
+        Stratumn Agent UI
+      {{/paper-toolbar}}
+
+      {{#paper-list class="flex layout-column"}}
+        {{#link-to "index"}}
+          {{#paper-item}}Agent info{{/paper-item}}
+        {{/link-to}}
+        {{#link-to "maps"}}
+          {{#paper-item}}Maps{{/paper-item}}
+        {{/link-to}}
+        {{#link-to "segments"}}
+          {{#paper-item}}Segments{{/paper-item}}
+        {{/link-to}}
+        <span class="flex"></span>
+        <a href="http://developer.stratumn.com" target="_blank">
+          {{#paper-item}}Developer HUB{{/paper-item}}
+        </a>
+        <a href="https://github.com/stratumn/agent-ui/issues/new" target="_blank">
+          {{#paper-item}}Report issue{{/paper-item}}
+        </a>
+      {{/paper-list}}
+
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  <div class="flex layout-column">
+    {{#paper-toolbar class="page-main-toolbar md-whiteframe-1dp"}}
+      {{#paper-toolbar-tools}}
+        {{#paper-sidenav-toggle class="hide-gt-sm" as |toggleAction|}}
+          {{#paper-button class="hide-gt-sm" iconButton=true onClick=(action toggleAction)}}
+            {{paper-icon "menu"}}
+          {{/paper-button}}
+        {{/paper-sidenav-toggle}}
+        {{outlet "toolbar"}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{outlet}}
+  </div>
+
+{{/paper-sidenav-container}}

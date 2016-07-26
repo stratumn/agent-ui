@@ -1,34 +1,24 @@
 import Ember from 'ember';
+import ENV from 'agent-ui/config/environment';
 
 export default Ember.Controller.extend({
+
   stratumn: Ember.inject.service('stratumn'),
 
-  queryParams: ['page'],
+  queryParams: ['limit'],
 
-  page: 1,
+  limit: ENV.APP.ITEMS_PER_PAGE,
 
-  prevPage: Ember.computed('page', function() {
-    const page = this.get('page');
-    if (page > 1) { return page - 1; }
-    return page;
-  }),
-
-  nextPage: Ember.computed('page', 'model', function() {
-    const page = this.get('page');
-    const model = this.get('model');
-    if (model.maps.length >= 20) { return page + 1; }
-    return page;
-  }),
-
-  firstPage: Ember.computed('page', function() {
-    return this.get('page') <= 1;
-  }),
-
-  lastPage: Ember.computed('page', 'model', function() {
-    return this.get('model').maps.length < 20;
+  hasNoMore: Ember.computed('limit', 'model', function() {
+    return this.get('model').maps.length < this.get('limit');
   }),
 
   actions: {
+
+    userDidToggleShowCreateMap() {
+      return this.toggleProperty('showCreateMap');
+    },
+
     userDidCreateMap(...args) {
       return this
         .get('stratumn')
@@ -36,6 +26,15 @@ export default Ember.Controller.extend({
         .then(agent => agent.createMap(...args))
         .then(segment => this.transitionToRoute('segment', segment.meta.linkHash))
         .catch(err => this.set('error', err));
+    },
+
+    userDidLoadMore() {
+      if (!this.get('hasNoMore')) {
+        this.transitionToRoute({
+          queryParams: { limit: this.get('limit') + ENV.APP.ITEMS_PER_PAGE }
+        });
+      }
     }
+  
   }
 });

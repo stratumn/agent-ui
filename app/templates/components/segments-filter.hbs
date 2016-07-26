@@ -1,27 +1,30 @@
-<h4>Filter</h4>
-<form class="m-t-2">
-  <div class="form-group row">
-    <label for="map" class="col-sm-5 form-control-label">Map ID</label>
-    <div class="col-sm-7">
-      {{input type="text" class="form-control" id="map" placeholder="value" value=map}}
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="prev" class="col-sm-5 form-control-label">Previous link hash</label>
-    <div class="col-sm-7">
-      {{input type="text" class="form-control" id="prev" placeholder="value" value=prev}}
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="tags" class="col-sm-5 form-control-label">Tags</label>
-    <div class="col-sm-7">
-      {{input type="text" class="form-control" id="tags" placeholder="value" value=tags}}
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-offset-5 col-sm-7">
-      <button type="submit" class="btn btn-primary" {{action "updateFilter"}}>Submit</button>
-      <button type="reset" class="btn btn-secondary" {{action "clearFilter"}}>Clear</button>
-    </div>
-  </div>
-</form>
+{{#paper-form onSubmit=(action "onSubmit") as |form|}}
+  <form {{action "void" on="submit"}}>
+    {{#paper-content class="md-padding"}}
+      <div layout="" layout-sm="column">
+        {{paper-input
+          flex="25"
+          label="Map ID"
+          value=mapId
+          onChange=(action (mut mapId))
+        }}
+        {{paper-input
+          flex="25"
+          label="Prev link hash"
+          value=prevLinkHash
+          onChange=(action (mut prevLinkHash))
+        }}
+        {{paper-input
+          flex="25"
+          label="Tags"
+          value=tags
+          onChange=(action (mut tags))
+        }}
+        <div flex="25">
+          {{#paper-button type="submit" primary=true onClick=(action form.onSubmit)}}Filter{{/paper-button}}
+          {{#paper-button iconButton=true onClick=(action "onReset")}}{{paper-icon "clear"}}{{/paper-button}}
+        </div>
+      </div>
+    {{/paper-content}}
+  </form>
+{{/paper-form}}

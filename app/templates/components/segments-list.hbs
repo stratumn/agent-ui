@@ -1,8 +1,22 @@
-<ul class="list-group">
-  <h4 class="m-b-2">Link hashes</h4>
-  {{#each segments as |segment|}}
-  <li class="list-group-item">
-    <samp>{{#link-to 'segment' segment.meta.linkHash}}{{segment.meta.linkHash}}{{/link-to}}</samp>
-  </li>
-  {{/each}}
-</ul>
+{{#if segments.length}}
+  {{#paper-list}}
+    {{paper-divider}}
+    {{#each segments as |segment|}}
+      {{#link-to "segment" segment.meta.linkHash}}
+        {{#paper-item}}
+          <samp class="hide show-lg">{{segment.meta.linkHash}}</samp>
+          <samp class="hide-gt-md">{{short-hash segment.meta.linkHash}}</samp>
+        {{/paper-item}}
+      {{/link-to}}
+      {{paper-divider}}
+    {{/each}}
+  {{/paper-list}}
+  {{#paper-content class="md-padding"}}
+    {{#paper-button disabled=hasNoMore onClick=(action "onLoadMore")}}Load more{{/paper-button}}
+  {{/paper-content}}
+{{else}}
+  {{#paper-content class="md-padding"}}
+    <h2>Nothing to see here</h2>
+    <p>No segments matched your request.</p>
+  {{/paper-content}}
+{{/if}}

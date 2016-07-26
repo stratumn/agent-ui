@@ -1,21 +1,19 @@
-<div class="row">
-  <div class="col-md-8">
-    <h4 class="m-b-2">Segment details</h4>
-  </div>
-  {{segment-links class="col-md-4" segment=segment}}
-</div>
+<h2>Link hash</h2>
+<p><samp>{{segment.meta.linkHash}}</samp></p>
 
-<h5>Link hash</h5>
-<samp>{{segment.meta.linkHash}}</samp>
-<h5 class="m-t-1">Map ID</h5>
-<samp>{{segment.link.meta.mapId}}</samp>
-<h5 class="m-t-1">State hash</h5>
-<samp>{{segment.link.meta.stateHash}}</samp>
+<h2 class="m-t-1">Map ID</h2>
+<p><samp>{{segment.link.meta.mapId}}</samp></p>
+
+<h2 class="m-t-1">State hash</h2>
+<p><samp>{{segment.link.meta.stateHash}}</samp></p>
+
 {{#if segment.link.meta.prevLinkHash}}
-  <h5 class="m-t-1">Previous link hash</h5>
-  <samp>{{segment.link.meta.prevLinkHash}}</samp>
+  <h2 class="m-t-1">Previous link hash</h2>
+  <p><samp>{{segment.link.meta.prevLinkHash}}</samp></p>
 {{/if}}
-<h5 class="m-t-1">Action</h5>
-<samp>{{segment.action}}</samp>
-<h5 class="m-t-1">Raw JSON</h5>
+
+<h2 class="m-t-1">Action</h2>
+<p><samp>{{segment.action}}</samp></p>
+
+<h2 class="m-t-1">Raw JSON</h2>
 <pre><code class="json"></code></pre>

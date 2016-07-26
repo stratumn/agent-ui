@@ -1,17 +1,17 @@
-<div class="container m-t-2">
-  {{#if error}}
-    <div class="alert alert-danger" role="alert">
-      <strong>Error {{error.status}}:</strong> {{error.message}}
-    </div>
-  {{/if}}
-  <div class="row">
-    <div class="col-md-4">
-      {{#if model.appendActions.length}}
-        {{segment-append appendActions=model.appendActions segment=model.segment  onSubmit=(action "userDidAppendSegment")}}
-      {{/if}}
-    </div>
-    <div class="col-md-8">
-      {{segment-details segment=model.segment}}
-    </div>
-  </div>
-</div>
+{{#if showAppendSegment}}
+  {{segment-append
+  	segment=model.segment
+  	error=error
+  	appendActions=model.appendActions
+  	onClose=(action "userDidToggleShowAppendSegment")
+  	onSubmit=(action "userDidAppendSegment")
+  }}
+{{/if}}
+
+{{#if showMore}}
+  {{segment-links segment=model.segment onClose=(action "userDidToggleShowMore")}}
+{{/if}}
+
+{{#paper-content class="md-padding"}}
+  {{segment-details segment=model.segment}}
+{{/paper-content}}

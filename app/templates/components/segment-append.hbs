@@ -1,28 +1,43 @@
-<h4>Append segment</h4>
-<p><small class="text-muted">This will call the <sampl>{{selectedActionName}}()</sampl> action of your agent to append a new segment after this one.</small></p>
-<form class="m-t-2">
-  <div class="form-group row">
-    <label for="selectedAction" class="col-sm-5 form-control-label">Action</label>
-    <div class="col-sm-7">
-      <select class="form-control" id="selectedAction" style="margin-top: .5em" onchange={{action "selectAppendAction" value="target.value"}}>
-        {{#each appendActions as |appendAction index|}}
-          <option value="{{index}}" selected="{{if (eql selectedAction index) 'selected'}}">{{appendAction.name}}</option>
-        {{/each}}
-      </select>
-    </div>
-  </div>
-  {{#each args as |arg|}}
-  <div class="form-group row">
-    <label for="{{arg.name}}" class="col-sm-5 form-control-label">{{arg.name}}</label>
-    <div class="col-sm-7">
-      {{input type="text" class="form-control" id=arg.name placeholder="value" value=arg.value}}
-    </div>
-  </div>
-  {{/each}}
-  <div class="form-group row">
-    <div class="col-sm-offset-5 col-sm-7">
-      <button type="submit" class="btn btn-primary" {{action "appendSegment"}}>Submit</button>
-    </div>
-  </div>
-</form>
+{{#paper-dialog clickOutsideToClose=true onClose=(action "onClose")}}
+  {{#paper-form onSubmit=(action "onSubmit") as |form|}}
+    <form {{action "void" on="submit"}}>
 
+      {{#paper-toolbar}}
+        <div class="md-toolbar-tools">
+          <h2>Append segment</h2>
+          <span class="flex"></span>
+          {{#paper-button iconButton=true onClick=(action "onClose")}}
+            {{paper-icon icon="close"}}
+          {{/paper-button}}
+        </div>
+      {{/paper-toolbar}}
+
+      {{#paper-dialog-content}}
+        {{#if error}}
+          <p class="error"><strong>Error {{error.status}}:</strong> {{error.message}}</p>
+        {{/if}}
+        {{#paper-select
+          block=true
+          placeholder="Action"
+          value=selectedAppendAction
+          onChange=(action "onChangeSelectedAppendAction")
+        }}
+          {{#each appendActions as |appendAction|}}
+            {{#paper-option value=appendAction.name}}
+              {{appendAction.name}}
+            {{/paper-option}}
+          {{/each}}
+        {{/paper-select}}
+        {{#each args as |arg|}}
+          {{paper-input label=arg.name value=arg.value block=true onChange=(action (mut arg.value))}}
+        {{/each}}
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        <span class="flex"></span>
+        {{#paper-button type="submit" primary=true onClick=(action form.onSubmit)}}Submit{{/paper-button}}
+      {{/paper-dialog-actions}}
+
+    </form>
+  {{/paper-form}}
+{{/paper-dialog}}

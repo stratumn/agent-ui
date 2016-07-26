@@ -1,0 +1,21 @@
+<h1>
+  <span class="hide show-gt-sm">
+    {{#link-to "segments"}}Segments{{/link-to}}
+    {{paper-icon icon="chevron-right"}}
+  </span>
+  {{short-hash model.segment.meta.linkHash}}
+</h1>
+
+<span class="flex"></span>
+
+{{#if model.appendActions.length}}
+  {{#paper-button onClick=(action "userDidToggleShowAppendSegment")}}
+    {{paper-icon "add" size=30}}
+    &nbsp;
+    Append
+  {{/paper-button}}
+{{/if}}
+
+{{#paper-button iconButton=true onClick=(action "userDidToggleShowMore")}}
+  {{paper-icon "more_vert"}}
+{{/paper-button}}

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
   stratumn: Ember.inject.service('stratumn'),
 
   model(params) {
@@ -13,17 +14,28 @@ export default Ember.Route.extend({
         agent = res;
         return agent.getSegment(params.linkHash);
       }).then(segment => {
+        const args = segment.link.meta.arguments.map(a =>
+          JSON.stringify(a)
+        ).join(', ');
+
         segment.json = JSON.stringify(segment, null, '  ');
-        const args = segment.link.meta.arguments.map(a => JSON.stringify(a)).join(', ');
         segment.action = `${segment.link.meta.action}(${args})`;
+
         const appendActions = agent.actions.slice(1);
+
         return { appendActions, segment };
       });
   },
 
-  resetController(controller, isExiting) {
-    if (isExiting) {
-      controller.set('error');
-    }
+  renderTemplate() {
+    this._super();
+    this.render('segment-toolbar', { into: 'application', outlet: 'toolbar' });
+  },
+
+  resetController(controller) {
+    controller.set('showMore', false);
+    controller.set('showAppendSegment', false);
+    controller.set('error');
   }
+
 });
