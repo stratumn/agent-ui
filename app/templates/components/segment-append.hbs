@@ -19,12 +19,12 @@
         {{#paper-select
           block=true
           placeholder="Action"
-          value=selectedAppendAction
-          onChange=(action "onChangeSelectedAppendAction")
+          value=selectedAction
+          onChange=(action "changeSelectedAction")
         }}
-          {{#each appendActions as |appendAction|}}
-            {{#paper-option value=appendAction.name}}
-              {{appendAction.name}}
+          {{#each appendActions as |action|}}
+            {{#paper-option value=action.name}}
+              {{action.name}}
             {{/paper-option}}
           {{/each}}
         {{/paper-select}}

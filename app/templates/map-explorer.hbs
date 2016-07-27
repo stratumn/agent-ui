@@ -1,0 +1,13 @@
+{{#if showAppendSegmentDialog}}
+  {{segment-append
+    segment=segment
+    error=error
+    appendActions=model.appendActions
+    onClose=(action "toggleAppendSegmentDialog")
+    onSubmit=(action "appendSegmentThenUpdate")
+  }}
+{{/if}}
+
+{{#paper-content}}
+  {{map-explorer chainscript=model.segments onSelectSegment=(action (mut segment))}}
+{{/paper-content}}

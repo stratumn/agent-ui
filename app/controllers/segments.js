@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Base from 'agent-ui/controllers/base';
 import ENV from 'agent-ui/config/environment';
 
-export default Ember.Controller.extend({
+export default Base.extend({
 
   queryParams: ['limit', 'mapId', 'prevLinkHash', 'tags'],
 
@@ -16,7 +17,7 @@ export default Ember.Controller.extend({
 
   actions: {
 
-    userDidUpdateFilter(filter) {
+    updateFilter(filter) {
       this.transitionToRoute({
           queryParams: {
           limit: ENV.APP.ITEMS_PER_PAGE,
@@ -27,7 +28,7 @@ export default Ember.Controller.extend({
       });
     },
 
-    userDidLoadMore() {
+    loadMore() {
       if (!this.get('hasNoMore')) {
         this.transitionToRoute({
           queryParams: { limit: this.get('limit') + ENV.APP.ITEMS_PER_PAGE }

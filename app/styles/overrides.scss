@@ -5,6 +5,16 @@ md-dialog {
   }
 }
 
+md-list-item {
+  p {
+    color: color($primary, '300');
+  }
+
+  &:hover p {
+    color: color($primary, '100');
+  }
+}
+
 md-input-container {
   margin-bottom: 24px;
 

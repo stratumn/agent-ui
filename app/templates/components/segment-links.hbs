@@ -11,6 +11,9 @@
   {{/paper-toolbar}}
 
   {{#paper-list}}
+    {{#link-to "map-explorer" segment.link.meta.mapId}}
+      {{#paper-item}}Navigate to map explorer{{/paper-item}}
+    {{/link-to}}
     {{#link-to "segments" (query-params map=segment.link.meta.mapId)}}
       {{#paper-item}}Navigate to map segments{{/paper-item}}
     {{/link-to}}

@@ -4,11 +4,12 @@
   	mapId=model.mapId
   	prevLinkHash=model.prevLinkHash
   	tags=model.tags
-  	onSubmit=(action "userDidUpdateFilter")
+  	onSubmit=(action "updateFilter")
   }}
   {{segments-list
   	segments=model.segments
   	hasNoMore=hasNoMore
-  	onLoadMore=(action "userDidLoadMore")
+    onClickSegment=(action "viewSegment")
+  	onLoadMore=(action "loadMore")
   }}
 {{/paper-content}}

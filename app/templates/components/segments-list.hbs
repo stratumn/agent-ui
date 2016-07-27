@@ -2,12 +2,10 @@
   {{#paper-list}}
     {{paper-divider}}
     {{#each segments as |segment|}}
-      {{#link-to "segment" segment.meta.linkHash}}
-        {{#paper-item}}
-          <samp class="hide show-lg">{{segment.meta.linkHash}}</samp>
-          <samp class="hide-gt-md">{{short-hash segment.meta.linkHash}}</samp>
-        {{/paper-item}}
-      {{/link-to}}
+      {{#paper-item onClick=(action "onClickSegment" segment.meta.linkHash)}}
+        <samp class="hide show-lg">{{segment.meta.linkHash}}</samp>
+        <samp class="hide-gt-md">{{short-hash segment.meta.linkHash}}</samp>
+      {{/paper-item}}
       {{paper-divider}}
     {{/each}}
   {{/paper-list}}

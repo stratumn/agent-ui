@@ -1,15 +1,15 @@
-{{#if showAppendSegment}}
+{{#if showAppendSegmentDialog}}
   {{segment-append
-  	segment=model.segment
-  	error=error
-  	appendActions=model.appendActions
-  	onClose=(action "userDidToggleShowAppendSegment")
-  	onSubmit=(action "userDidAppendSegment")
+    segment=model.segment
+    error=error
+    appendActions=model.appendActions
+    onClose=(action "toggleAppendSegmentDialog")
+    onSubmit=(action "appendSegmentThenViewNext")
   }}
 {{/if}}
 
 {{#if showMore}}
-  {{segment-links segment=model.segment onClose=(action "userDidToggleShowMore")}}
+  {{segment-links segment=model.segment onClose=(action "toggleShowMoreDialog")}}
 {{/if}}
 
 {{#paper-content class="md-padding"}}

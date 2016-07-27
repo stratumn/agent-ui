@@ -1,9 +1,8 @@
 import Ember from 'ember';
+import Base from 'agent-ui/controllers/base';
 import ENV from 'agent-ui/config/environment';
 
-export default Ember.Controller.extend({
-
-  stratumn: Ember.inject.service('stratumn'),
+export default Base.extend({
 
   queryParams: ['limit'],
 
@@ -15,20 +14,11 @@ export default Ember.Controller.extend({
 
   actions: {
 
-    userDidToggleShowCreateMap() {
-      return this.toggleProperty('showCreateMap');
+    toggleCreateMapDialog() {
+      return this.toggleProperty('showCreateMapDialog');
     },
 
-    userDidCreateMap(...args) {
-      return this
-        .get('stratumn')
-        .getAgent()
-        .then(agent => agent.createMap(...args))
-        .then(segment => this.transitionToRoute('segment', segment.meta.linkHash))
-        .catch(err => this.set('error', err));
-    },
-
-    userDidLoadMore() {
+    loadMore() {
       if (!this.get('hasNoMore')) {
         this.transitionToRoute({
           queryParams: { limit: this.get('limit') + ENV.APP.ITEMS_PER_PAGE }

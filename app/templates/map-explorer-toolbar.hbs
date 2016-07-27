@@ -1,0 +1,18 @@
+<h1>
+  <span class="hide show-gt-sm">
+    {{#link-to "maps"}}Maps{{/link-to}}
+    {{paper-icon icon="chevron-right"}}
+  </span>
+  <span class="hide show-md show-lg">{{model.mapId}}</span>
+  <span class="hide-gt-sm">{{short-hash model.mapId}}</span>
+  <span class="flex" />
+</h1>
+
+{{#if segment}}
+  <span class="flex"></span>
+  {{#paper-button onClick=(action "toggleAppendSegmentDialog")}}
+    {{paper-icon "add" size=30}}
+    &nbsp;
+    Append
+  {{/paper-button}}
+{{/if}}

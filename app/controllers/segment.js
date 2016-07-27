@@ -1,29 +1,23 @@
-import Ember from 'ember';
+import Base from 'agent-ui/controllers/base';
 
-export default Ember.Controller.extend({
-
-  stratumn: Ember.inject.service('stratumn'),
+export default Base.extend({
 
   actions: {
 
-    userDidToggleShowMore() {
+    toggleShowMoreDialog() {
       return this.toggleProperty('showMore');
     },
 
-    userDidToggleShowAppendSegment() {
-      return this.toggleProperty('showAppendSegment');
+    toggleAppendSegmentDialog() {
+      return this.toggleProperty('showAppendSegmentDialog');
     },
 
-    userDidAppendSegment(linkHash, action, ...args) {
-      return this
-        .get('stratumn')
-        .getAgent()
-        .then(agent => agent.getSegment(linkHash))
-        .then(segment => segment[action](...args))
+    appendSegmentThenViewNext(...args) {
+      this.actions
+        .appendSegment.apply(this, args)
         .then(segment => {
           this.transitionToRoute('segment', segment.meta.linkHash);
-        })
-        .catch(err => this.set('error', err));
+        });
     }
 
   }

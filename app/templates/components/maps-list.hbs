@@ -1,12 +1,15 @@
 {{#if maps.length}}
   {{#paper-list}}
     {{#each maps as |mapId|}}
-      {{#link-to "segments" (query-params mapId=mapId)}}
-        {{#paper-item}}
+      {{#paper-item onClick=(action "onClickMap" mapId)}}
+        <p>
           <samp class="hide show-md show-lg">{{mapId}}</samp>
           <samp class="hide-gt-sm">{{short-hash mapId}}</samp>
-        {{/paper-item}}
-      {{/link-to}}
+        </p>
+        {{#paper-button class="md-secondary" onClick=(action "onClickViewMapSegments" mapId)}}
+          View segments
+        {{/paper-button}}
+      {{/paper-item}}
       {{paper-divider}}
     {{/each}}
   {{/paper-list}}

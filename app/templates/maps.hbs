@@ -1,12 +1,18 @@
-{{#if showCreateMap}}
+{{#if showCreateMapDialog}}
   {{maps-create
   	action=model.agent.actions.[0]
   	error=error
-  	onClose=(action "userDidToggleShowCreateMap")
-  	onSubmit=(action "userDidCreateMap")
+  	onClose=(action "toggleCreateMapDialog")
+  	onSubmit=(action "createMap")
   }}
 {{/if}}
 
 {{#paper-content}}
-  {{maps-list maps=model.maps hasNoMore=hasNoMore onLoadMore=(action "userDidLoadMore")}}
+  {{maps-list
+  	maps=model.maps
+  	hasNoMore=hasNoMore
+  	onClickMap=(action "exploreMap")
+  	onClickViewMapSegments=(action "viewMapSegments")
+  	onLoadMore=(action "loadMore")
+  }}
 {{/paper-content}}

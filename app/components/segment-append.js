@@ -4,14 +4,11 @@ export default Ember.Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('selectedAppendAction', this.get('appendActions')[0].name);
-    this.resetArgs();
-  },
 
-  didUpdateAttrs() {
-    this._super(...arguments);
-    this.set('selectedAppendAction', this.get('appendActions')[0].name);
-    this.resetArgs();
+    if (!this.get('selectedAction')) {
+      this.set('selectedAction', this.get('appendActions')[0].name);
+      this.resetArgs();
+    }
   },
 
   actions: {
@@ -20,15 +17,6 @@ export default Ember.Component.extend({
 
     onClose() {
       this.get('onClose')();
-    },
-
-    onChangeSelectedAppendAction(value) {
-      if (!value) {
-        return;
-      }
-
-      this.set('selectedAppendAction', value);
-      this.resetArgs();
     },
 
     onSubmit() {
@@ -50,21 +38,31 @@ export default Ember.Component.extend({
 
       this.get('onSubmit')(
         this.get('segment').meta.linkHash,
-        this.get('appendActions')[this.get('selectedAppendActionIndex')].name,
+        this.get('appendActions')[this.get('selectedActionIndex')].name,
         ...args
       );
+    },
+
+    changeSelectedAction(value) {
+      if (!value) {
+        return;
+      }
+
+      this.set('selectedAction', value);
+      this.resetArgs();
     }
+
   },
 
   resetArgs() {
-    const appendActions = this.get('appendActions');
-    const selectedAppendAction = this.get('selectedAppendAction');
+    const actions = this.get('appendActions');
+    const selectedAction = this.get('selectedAction');
 
-    const index = appendActions.reduce((prev, curr, i) => {
-      return curr.name === selectedAppendAction ? i : prev;
+    const index = actions.reduce((prev, curr, i) => {
+      return curr.name === selectedAction ? i : prev;
     }, -1);
 
-    this.set('selectedAppendActionIndex', index);
-    this.set('args', appendActions[index].args.map(name => ({ name })));
+    this.set('selectedActionIndex', index);
+    this.set('args', actions[index].args.map(name => ({ name })));
   }
 });

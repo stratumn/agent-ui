@@ -8,6 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('maps');
+  this.route('map-explorer', { path: '/maps/:mapId' });
   this.route('segments');
   this.route('segment', { path: '/segments/:linkHash' });
   this.route('404', { path: '*path' });

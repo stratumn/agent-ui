@@ -15,7 +15,7 @@ export default Ember.Component.extend({
       this.get('onSubmit')(filter);
     },
 
-    onReset() {
+    reset() {
       this.set('mapId', '');
       this.set('prevLinkHash', '');
       this.set('tags', '');

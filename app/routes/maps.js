@@ -28,7 +28,7 @@ export default Ember.Route.extend({
   resetController(controller, isExiting) {
     if (isExiting) {
       controller.set('limit', ENV.APP.ITEMS_PER_PAGE);
-      controller.set('showCreateMap', false);
+      controller.set('showCreateMapDialog', false);
       controller.set('error');
     }
   }

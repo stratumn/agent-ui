@@ -34,7 +34,7 @@ export default Ember.Route.extend({
 
   resetController(controller) {
     controller.set('showMore', false);
-    controller.set('showAppendSegment', false);
+    controller.set('showAppendSegmentDialog', false);
     controller.set('error');
   }
 
