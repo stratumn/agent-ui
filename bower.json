@@ -3,7 +3,7 @@
   "dependencies": {
     "ember": "~2.7.0",
     "ember-cli-shims": "0.1.1",
-    "stratumn-sdk": "^1.0.2",
+    "stratumn-sdk": "^1.2.1",
     "highlightjs": "^9.5.0",
     "ember-qunit-notifications": "0.1.0"
   }
