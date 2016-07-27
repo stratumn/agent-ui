@@ -1,10 +1,26 @@
-@import "variables";
-@import "bootstrap";
-@import "github-gist";
+$primary: "cyan";
 
-.navbar-brand {
-	background: url(/assets/images/logo.svg) no-repeat;
-	background-size: auto 100%;
-	text-indent: -5000px;
-	width: 40px;
-}
+@import "color-palette";
+
+$color-cyan: (
+  '50':   #295761,
+  '100':  #295761,
+  '200':  #4897A8,
+  '300':  #4897A8,
+  '400':  #55aec5,
+  '500':  #7BC0D2,
+  '600':  lighten(#7BC0D2, 5%),
+  '700':  #7BC0D2,
+  '800':  #7BC0D2,
+  '900':  #7BC0D2,
+  'A100': #7BC0D2,
+  'A200': #7BC0D2,
+  'A400': #7BC0D2,
+  'A700': #7BC0D2,
+  'contrast': $dark-contrast-color
+);
+
+@import "ember-paper";
+@import "github-gist";
+@import "overrides";
+@import "styles";

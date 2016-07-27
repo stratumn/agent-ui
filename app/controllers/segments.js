@@ -1,37 +1,40 @@
 import Ember from 'ember';
+import ENV from 'agent-ui/config/environment';
 
 export default Ember.Controller.extend({
-  page: 1,
-  map: '',
-  prev: '',
+
+  queryParams: ['limit', 'mapId', 'prevLinkHash', 'tags'],
+
+  limit: ENV.APP.ITEMS_PER_PAGE,
+  mapId: '',
+  prevLinkHash: '',
   tags: '',
 
-  queryParams: ['page', 'map', 'prev', 'tags'],
-
-  prevPage: Ember.computed('page', function() {
-    const page = this.get('page');
-    if (page > 1) { return page - 1; }
-    return page;
-  }),
-
-  nextPage: Ember.computed('page', 'model', function() {
-    const page = this.get('page');
-    const model = this.get('model');
-    if (model.segments.length >= 20) { return page + 1; }
-    return page;
-  }),
-
-  firstPage: Ember.computed('page', function() {
-    return this.get('page') <= 1;
-  }),
-
-  lastPage: Ember.computed('page', 'model', function() {
-    return this.get('model').segments.length < 20;
+  hasNoMore: Ember.computed('limit', 'model', function() {
+    return this.get('model').segments.length < this.get('limit');
   }),
 
   actions: {
+
     userDidUpdateFilter(filter) {
-      this.transitionToRoute('segments', { queryParams: filter });
+      this.transitionToRoute({
+          queryParams: {
+          limit: ENV.APP.ITEMS_PER_PAGE,
+          mapId: filter.mapId || '',
+          prevLinkHash: filter.prevLinkHash || '',
+          tags: filter.tags || ''
+        }
+      });
+    },
+
+    userDidLoadMore() {
+      if (!this.get('hasNoMore')) {
+        this.transitionToRoute({
+          queryParams: { limit: this.get('limit') + ENV.APP.ITEMS_PER_PAGE }
+        });
+      }
     }
+
   }
+
 });

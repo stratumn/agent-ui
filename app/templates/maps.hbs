@@ -1,26 +1,12 @@
-<div class="container m-t-2">
-  {{#if error}}
-    <div class="alert alert-danger" role="alert">
-      <strong>Error {{error.status}}:</strong> {{error.message}}
-    </div>
-  {{/if}}
-  <div class="row">
-    <div class="col-md-4">
-      {{maps-create action=model.agent.actions.[0] onSubmit=(action "userDidCreateMap")}}
-    </div>
-    <div class="col-md-8">
-      {{#if model.maps.length}}
-        {{maps-list maps=model.maps}}
-        <nav>
-          <ul class="pager text-md-left">
-            <li class="{{if firstPage 'disabled'}}">{{#link-to 'maps' (query-params page=prevPage)}}Previous{{/link-to}}</li>
-            <li class="{{if lastPage 'disabled'}}">{{#link-to 'maps' (query-params page=nextPage)}}Next{{/link-to}}</li>
-          </ul>
-        </nav>
-      {{else}}
-        <h4>Nothing to see here</h4>
-        <p><small class="text-muted">You don't have any maps at this point. Create one to get started.</small></p>
-      {{/if}}
-    </div>
-  </div>
-</div>
+{{#if showCreateMap}}
+  {{maps-create
+  	action=model.agent.actions.[0]
+  	error=error
+  	onClose=(action "userDidToggleShowCreateMap")
+  	onSubmit=(action "userDidCreateMap")
+  }}
+{{/if}}
+
+{{#paper-content}}
+  {{maps-list maps=model.maps hasNoMore=hasNoMore onLoadMore=(action "userDidLoadMore")}}
+{{/paper-content}}

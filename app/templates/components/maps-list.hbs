@@ -1,8 +1,21 @@
-<ul class="list-group">
-  <h4 class="m-b-2">Map IDs</h4>
-  {{#each maps as |map|}}
-  <li class="list-group-item">
-    <samp>{{#link-to 'segments' (query-params map=map)}}{{map}}{{/link-to}}</samp>
-  </li>
-  {{/each}}
-</ul>
+{{#if maps.length}}
+  {{#paper-list}}
+    {{#each maps as |mapId|}}
+      {{#link-to "segments" (query-params mapId=mapId)}}
+        {{#paper-item}}
+          <samp class="hide show-md show-lg">{{mapId}}</samp>
+          <samp class="hide-gt-sm">{{short-hash mapId}}</samp>
+        {{/paper-item}}
+      {{/link-to}}
+      {{paper-divider}}
+    {{/each}}
+  {{/paper-list}}
+  {{#paper-content class="md-padding"}}
+    {{#paper-button disabled=hasNoMore onClick=(action "onLoadMore")}}Load more{{/paper-button}}
+  {{/paper-content}}
+{{else}}
+  {{#paper-content class="md-padding"}}
+    <h2>Nothing to see here</h2>
+    <p>You don"t have any maps at this point. Create one to get started.</p>
+  {{/paper-content}}
+{{/if}}

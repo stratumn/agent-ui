@@ -1,39 +1,55 @@
-<div class="container m-t-2">
-  <div class="row">
-    <div class="col-lg-8">
-      <h4 class="m-b-2">Agent info</h4>
-      <p><small class="text-muted">An agent executes the logic of your workflow. An instance of a workflow is called a map. It contains the different steps of the workflow, called segments. </small></p>
-      <h5>Endpoint</h5>
-      <p><a href="{{model.url}}" target="_blank">{{model.url}}</a>
-      <br><small class="text-muted">You can use this URL to connect to your agent, using the <a class="nav-link" href="https://github.com/stratumn/stratumn-sdk-js/tree/alpha" target="_blank">Stratumn Javascript SDK</a> for instance.</small></p>
-      <h5>Actions</h5>
-      <ul>
-        {{#each model.actions as |action|}}
-        <li><samp>{{action.signature}}</samp></li>
-        {{/each}}
-      </ul>
-      <p><small class="text-muted">These are the procedures that define how segments are added to your maps.</small></p>
-      <h4>Store adapter</h4>
-      <p><small class="text-muted">A store is responsible for saving your data. There are different adapters available depending on your needs.</small></p>
-      <h5>Store adapter name</h5>
-      <p><samp>{{model.storeInfo.adapter.name}}</samp></p>
-      <h5>Store adapter version</h5>
-      <p><samp>{{model.storeInfo.adapter.version}}</samp></p>
-      <h5>Store adapter description</h5>
-      <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
-    </div>
-    <div class="col-lg-4">
-      <ul class="nav nav-pills nav-stacked">
-        <li class="nav-item">
-          <a class="nav-link" href="http://developer.stratumn.com" target="_blank">Developer HUB</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/stratumn/agent-template-js" target="_blank">Agent template</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/stratumn/stratumn-sdk-js/tree/alpha" target="_blank">Javascript SDK</a>
-        </li>
-      </ul>
-    </div>
+{{#paper-content class="md-padding"}}
+  <div class="index-content">
+
+    <p>
+      An agent executes the logic of your workflow.
+      An instance of a workflow is called a map.
+      It contains the different steps of the workflow, called segments.
+    </p>
+
+    {{paper-divider}}
+
+    <h2>Endpoint</h2>
+    <p><samp><a href="{{model.url}}" target="_blank">{{model.url}}</a></samp></p>
+    <p class="light">
+      <small>
+        You can use this URL to connect to your agent, using the
+        <a class="nav-link" href="https://github.com/stratumn/stratumn-sdk-js/tree/alpha" target="_blank">Stratumn Javascript SDK</a>
+        for instance.
+      </small>
+    </p>
+
+    {{paper-divider}}
+
+    <h2>Actions</h2>
+    <ul>
+      {{#each model.actions as |action|}}
+      <li><samp>{{action.signature}}</samp></li>
+      {{/each}}
+    </ul>
+    <p class="light">
+      <small>
+        These are the procedures that define how segments are added to your maps.
+      </small>
+    </p>
+
+    {{paper-divider}}
+
+    <h2>Store adapter</h2>
+    <p class="light">
+      <small>
+        A store is responsible for saving your data. There are different adapters available depending on your needs.
+      </small>
+    </p>
+
+    <h3>Store adapter name</h3>
+    <p><samp>{{model.storeInfo.adapter.name}}</samp></p>
+
+    <h3>Store adapter version</h3>
+    <p><samp>{{model.storeInfo.adapter.version}}</samp></p>
+
+    <h3>Store adapter description</h3>
+    <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
+
   </div>
-</div>
+{{/paper-content}}

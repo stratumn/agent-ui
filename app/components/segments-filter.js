@@ -2,17 +2,25 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   actions: {
-    updateFilter() {
+
+    void() {},
+
+    onSubmit() {
       const filter = {
-        map: this.get('map'),
-        prev: this.get('prev'),
-        tags: this.get('tags') && this.get('tags').split(' ').join(',')
+        mapId: this.get('mapId') || '',
+        prevLinkHash: this.get('prevLinkHash') || '',
+        tags: this.get('tags') ? this.get('tags').split(' ').join(',') : ''
       };
+
       this.get('onSubmit')(filter);
     },
 
-    clearFilter() {
-      this.get('onSubmit')({ map: '', prev: '', tags: '' });
+    onReset() {
+      this.set('mapId', '');
+      this.set('prevLinkHash', '');
+      this.set('tags', '');
+      this.get('onSubmit')({ mapId: '', prevLinkHash: '', tags: '' });
     }
+
   }
 });
