@@ -14,10 +14,10 @@
     {{#link-to "map-explorer" segment.link.meta.mapId}}
       {{#paper-item}}Navigate to map explorer{{/paper-item}}
     {{/link-to}}
-    {{#link-to "segments" (query-params map=segment.link.meta.mapId)}}
+    {{#link-to "segments" (query-params mapId=segment.link.meta.mapId)}}
       {{#paper-item}}Navigate to map segments{{/paper-item}}
     {{/link-to}}
-    {{#link-to "segments" (query-params prev=segment.meta.linkHash)}}
+    {{#link-to "segments" (query-params prevLinkHash=segment.meta.linkHash)}}
       {{#paper-item }}Navigate to branches{{/paper-item}}
     {{/link-to}}
     {{#if segment.link.meta.prevLinkHash}}
