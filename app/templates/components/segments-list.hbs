@@ -3,8 +3,10 @@
     {{paper-divider}}
     {{#each segments as |segment|}}
       {{#paper-item onClick=(action "onClickSegment" segment.meta.linkHash)}}
-        <samp class="hide show-lg">{{segment.meta.linkHash}}</samp>
-        <samp class="hide-gt-md">{{short-hash segment.meta.linkHash}}</samp>
+        <p>
+          <samp class="hide show-lg">{{segment.meta.linkHash}}</samp>
+          <samp class="hide-gt-md">{{short-hash segment.meta.linkHash}}</samp>
+        </p>
       {{/paper-item}}
       {{paper-divider}}
     {{/each}}
