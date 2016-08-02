@@ -35,7 +35,7 @@
 
     {{paper-divider}}
 
-    <h2>Store adapter</h2>
+    <h2>Store</h2>
     <p class="light">
       <small>
         A store is responsible for saving your data. There are different adapters available depending on your needs.
@@ -50,6 +50,28 @@
 
     <h3>Store adapter description</h3>
     <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
+
+    {{paper-divider}}
+
+    <h2>Fossilizer</h2>
+    <p class="light">
+      <small>
+        A fossilizer adds the steps of your workflow to a timeline, such as a Blockchain or a trusted timestamping authority.
+      </small>
+    </p>
+
+    {{#if model.fossilizerInfo}}
+      <h3>Fossilizer adapter name</h3>
+      <p><samp>{{model.fossilizerInfo.adapter.name}}</samp></p>
+
+      <h3>Fossilizer adapter version</h3>
+      <p><samp>{{model.fossilizerInfo.adapter.version}}</samp></p>
+
+      <h3>Fossilizer adapter description</h3>
+      <p><samp>{{model.fossilizerInfo.adapter.description}}</samp></p>
+    {{else}}
+      <p>Your agent is not connected to a fossilizer.</p>
+    {{/if}}
 
   </div>
 {{/paper-content}}
