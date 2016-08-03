@@ -14,7 +14,8 @@ export default Base.extend({
         .then(segment => {
           this.set('model.segments', [...this.get('model.segments'), segment]);
           this.set('showAppendSegmentDialog', false);
-        });
+        })
+        .catch(() => {});
     }
 
   }

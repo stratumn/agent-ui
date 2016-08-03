@@ -24,6 +24,13 @@ export default Base.extend({
           queryParams: { limit: this.get('limit') + ENV.APP.ITEMS_PER_PAGE }
         });
       }
+    },
+
+    createMapThenViewSegment(...args) {
+      this.actions
+        .createMap.apply(this, args)
+        .then(segment => this.actions.viewSegment.call(this, segment.meta.linkHash))
+        .catch(() => {});
     }
   
   }

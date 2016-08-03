@@ -17,7 +17,8 @@ export default Base.extend({
         .appendSegment.apply(this, args)
         .then(segment => {
           this.transitionToRoute('segment', segment.meta.linkHash);
-        });
+        })
+        .catch(err => console.log(err));
     }
 
   }

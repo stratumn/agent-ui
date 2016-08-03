@@ -11,8 +11,11 @@ export default Ember.Controller.extend({
         .get('stratumn')
         .getAgent()
         .then(agent => agent.createMap(...args))
-        .then(segment => this.transitionToRoute('segment', segment.meta.linkHash))
-        .catch(err => this.set('error', err));
+        .catch(err => {
+          console.log(err);
+          this.set('error', err);
+          throw(err);
+        });
     },
 
     exploreMap(mapId) {
@@ -33,7 +36,11 @@ export default Ember.Controller.extend({
         .getAgent()
         .then(agent => agent.getSegment(linkHash))
         .then(segment => segment[action](...args))
-        .catch(err => this.set('error', err));
+        .catch(err => {
+          console.log(err);
+          this.set('error', err);
+          throw(err);
+        });
     }
 
   }
