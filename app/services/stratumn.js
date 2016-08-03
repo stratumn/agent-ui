@@ -4,9 +4,9 @@ import ENV from 'agent-ui/config/environment';
 
 function augmentAgent(agent) {
   agent.actions = Object
-    .keys(agent.agentInfo.functions)
+    .keys(agent.agentInfo.actions)
     .map(name => {
-      const args = agent.agentInfo.functions[name].args;
+      const args = agent.agentInfo.actions[name].args;
       const signature = `${name}(${args.join(', ')})`;
 
       return { name, args, signature };
