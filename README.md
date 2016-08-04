@@ -1,7 +1,12 @@
-# Agent-ui
+# Stratumn Agent User Interface
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Unless otherwise noted, the Stratumn Agent User Interface source files
+are distributed under the GNU GPLv3 found in the LICENSE file.
+
+The presentation and each element of the Stratumn Agent User Interface
+including trademarks, logos, photographs, domain names, any graphical
+element belong exclusively to Stratumn or its licensors and are
+protection by intellectual property laws.
 
 ## Prerequisites
 
