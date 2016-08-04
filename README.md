@@ -1,6 +1,5 @@
 # Stratumn Agent User Interface
 
-Stratumn Agent User Interface
 Copyright (C) 2016  Stratumn SAS
 
 This program is free software: you can redistribute it and/or modify
