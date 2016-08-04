@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('segments');
   this.route('segment', { path: '/segments/:linkHash' });
   this.route('404', { path: '*path' });
+  this.route('license');
 });
 
 export default Router;
