@@ -68,11 +68,20 @@
     <h3>Store adapter name</h3>
     <p><samp>{{model.storeInfo.adapter.name}}</samp></p>
 
-    <h3>Store adapter version</h3>
-    <p><samp>{{model.storeInfo.adapter.version}}</samp></p>
+    {{#if model.storeInfo.adapter.version}}
+      <h3>Store adapter version</h3>
+      <p><samp>{{model.storeInfo.adapter.version}}</samp></p>
+    {{/if}}
 
-    <h3>Store adapter description</h3>
-    <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
+    {{#if model.storeInfo.adapter.commit}}
+      <h3>Store adapter commit</h3>
+      <p><samp>{{model.storeInfo.adapter.commit}}</samp></p>
+    {{/if}}
+
+    {{#if model.storeInfo.adapter.description}}
+      <h3>Store adapter description</h3>
+      <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
+    {{/if}}
 
     {{paper-divider}}
 
@@ -87,11 +96,25 @@
       <h3>Fossilizer adapter name</h3>
       <p><samp>{{model.fossilizerInfo.adapter.name}}</samp></p>
 
-      <h3>Fossilizer adapter version</h3>
-      <p><samp>{{model.fossilizerInfo.adapter.version}}</samp></p>
+      {{#if model.fossilizerInfo.adapter.version}}
+        <h3>Fossilizer adapter version</h3>
+        <p><samp>{{model.fossilizerInfo.adapter.version}}</samp></p>
+      {{/if}}
 
-      <h3>Fossilizer adapter description</h3>
-      <p><samp>{{model.fossilizerInfo.adapter.description}}</samp></p>
+      {{#if model.fossilizerInfo.adapter.commit}}
+        <h3>Fossilizer adapter commit</h3>
+        <p><samp>{{model.fossilizerInfo.adapter.commit}}</samp></p>
+      {{/if}}
+
+      {{#if model.fossilizerInfo.adapter.description}}
+        <h3>Fossilizer adapter description</h3>
+        <p><samp>{{model.fossilizerInfo.adapter.description}}</samp></p>
+      {{/if}}
+
+      {{#if model.fossilizerInfo.adapter.blockchain}}
+        <h3>Fossilizer adapter blockchain</h3>
+        <p><samp>{{model.fossilizerInfo.adapter.blockchain}}</samp></p>
+      {{/if}}
     {{else}}
       <p>Your agent is not connected to a fossilizer.</p>
     {{/if}}
