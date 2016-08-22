@@ -1,15 +1,15 @@
-FROM node:6
+FROM mhart/alpine-node:6
 
-RUN mkdir /agent-ui
+RUN apk add --no-cache git make gcc g++ python
 
 RUN npm install -g bower
 
-ADD package.json /agent-ui/package.json
-ADD bower.json /agent-ui/bower.json
-RUN cd /agent-ui; npm install && bower install --allow-root
-ADD . /agent-ui/
+ADD package.json /src/package.json
+ADD bower.json /src/bower.json
+RUN cd /src; npm install && bower install --allow-root
+ADD . /src/
 
-WORKDIR /agent-ui
+WORKDIR /src
 
 ENV NODE_ENV production
 
