@@ -36,17 +36,19 @@ export default Ember.Route.extend({
   },
 
   model(params) {
+    const filter = JSON.parse(JSON.stringify(params));
+    filter.tags = params.tags.split(',');
     return this
       .get('stratumn')
       .getAgent()
       .then(agent => {
-        return agent.findSegments(params);
+        return agent.findSegments(filter);
       }).then(segments => {
         return {
           segments,
-          mapId: params.mapId,
-          prevLinkHash: params.prevLinkHash,
-          tags: params.tags.split(',').join(' ')
+          mapId: filter.mapId,
+          prevLinkHash: filter.prevLinkHash,
+          tags: filter.tags.join(' ')
         };
       });
   },
