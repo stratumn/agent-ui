@@ -124,7 +124,7 @@ md-toolbar.md-default-theme.page-main-toolbar {
   md-input-container {
     margin-bottom: 24px;
 
-    .md-input {
+    .md-input, .md-input.ng-invalid, .md-input.ng-invalid.ng-dirty {
       border-width: 1px;
       padding-left: 8px;
       padding-right: 8px;

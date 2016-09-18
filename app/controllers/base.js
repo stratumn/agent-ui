@@ -66,6 +66,22 @@ export default Ember.Controller.extend({
         });
     }
 
-  }
+  },
+
+  validateLinkHash: [{
+    message: 'Must be 64 character long hex string',
+    validate: (inputValue) => {
+      let regex = /^[a-zA-Z0-9]{64}$/;
+      return regex.test(inputValue);
+    }
+  }],
+
+  validateOptionalLinkHash: [{
+    message: 'Must be 64 character long hex string',
+    validate: (inputValue) => {
+      let regex = /^[a-zA-Z0-9]{64}$/;
+      return inputValue.length < 1 || regex.test(inputValue);
+    }
+  }],
 
 });
