@@ -56,7 +56,7 @@ export default Ember.Service.extend({
     }
 
     return StratumnSDK
-      .getAgent(ENV.APP.AGENT_URL)
+      .getAgent(location.protocol + '//' + location.hostname + ':' + ENV.APP.AGENT_PORT)
       .then(agent => {
         augmentAgent(agent);
         this.set('agent', agent);

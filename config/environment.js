@@ -39,7 +39,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      AGENT_URL: 'http://localhost:3000',
+      AGENT_PORT: 3000,
       ITEMS_PER_PAGE: 20
     }
   };
