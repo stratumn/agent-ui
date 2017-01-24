@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
 
     if (!this.get('selectedAction')) {
-      this.set('selectedAction', this.get('appendActions')[0].name);
+      this.set('selectedAction', this.get('appendActions')[0]);
       this.resetArgs();
     }
   },
@@ -61,7 +61,7 @@ export default Ember.Component.extend({
 
       this.get('onSubmit')(
         this.get('segment').meta.linkHash,
-        this.get('appendActions')[this.get('selectedActionIndex')].name,
+        this.get('selectedAction').name,
         ...args
       );
     },
@@ -80,12 +80,6 @@ export default Ember.Component.extend({
   resetArgs() {
     const actions = this.get('appendActions');
     const selectedAction = this.get('selectedAction');
-
-    const index = actions.reduce((prev, curr, i) => {
-      return curr.name === selectedAction ? i : prev;
-    }, -1);
-
-    this.set('selectedActionIndex', index);
-    this.set('args', actions[index].args.map(name => ({ name })));
+    this.set('args', selectedAction.args.map(name => ({ name })));
   }
 });

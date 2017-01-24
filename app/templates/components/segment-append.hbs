@@ -42,14 +42,12 @@
         {{#paper-select
           block=true
           placeholder="Action"
-          value=selectedAction
+          selected=selectedAction
           onChange=(action "changeSelectedAction")
+          options=appendActions
+          as |action|
         }}
-          {{#each appendActions as |action|}}
-            {{#paper-option value=action.name}}
-              {{action.name}}
-            {{/paper-option}}
-          {{/each}}
+          {{action.name}}
         {{/paper-select}}
         {{#each args as |arg|}}
           {{paper-input label=arg.name value=arg.value block=true onChange=(action (mut arg.value))}}

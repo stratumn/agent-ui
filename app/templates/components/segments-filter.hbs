@@ -24,28 +24,28 @@
 {{#paper-form onSubmit=(action "onSubmit") as |form|}}
   <form {{action "void" on="submit"}}>
     {{#paper-content class="md-padding"}}
-      <div layout="" layout-sm="column">
+      <div class="layout-row">
         {{paper-input
-          flex="25"
+          class="layout-column flex-25"
           label="Map ID"
           value=mapId
           onChange=(action (mut mapId))
         }}
         {{paper-input
-          flex="25"
+          class="layout-column flex-25"
           label="Prev link hash"
           value=prevLinkHash
           onChange=(action (mut prevLinkHash))
           customValidations=validateLinkHash
         }}
         {{paper-input
-          flex="25"
+          class="layout-column flex-25"
           label="Tags"
           value=tags
           onChange=(action (mut tags))
         }}
-        <div flex="25">
           {{#paper-button
+            class="layout-column flex-15"
             type="submit"
             primary=true
             onClick=(action form.onSubmit)
@@ -54,12 +54,12 @@
             Filter
           {{/paper-button}}
           {{#paper-button
+            class="layout-column flex-10"
             iconButton=true
             onClick=(action "reset")
           }}
             {{paper-icon "clear"}}
           {{/paper-button}}
-        </div>
       </div>
     {{/paper-content}}
   </form>
