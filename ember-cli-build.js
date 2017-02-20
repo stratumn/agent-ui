@@ -13,7 +13,7 @@ module.exports = function(defaults) {
   });
 
   app.import('bower_components/highlightjs/highlight.pack.js');
-  app.import('bower_components/stratumn-sdk/dist/stratumn-sdk.js');
+  app.import('bower_components/stratumn-agent-client/dist/stratumn-agent-client.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

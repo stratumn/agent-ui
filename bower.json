@@ -4,7 +4,7 @@
     "ember": "~2.7.0",
     "ember-cli-shims": "0.1.1",
     "hammer.js": "^2.0.8",
-    "stratumn-sdk": "alpha",
+    "stratumn-agent-client": "alpha",
     "highlightjs": "^9.5.0",
     "ember-qunit-notifications": "0.1.0",
     "matchMedia": "0.2.0",

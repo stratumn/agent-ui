@@ -6,7 +6,7 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-/* global StratumnSDK */
+/* global StratumnAgentClient */
 import Ember from 'ember';
 import ENV from 'agent-ui/config/environment';
 
@@ -40,7 +40,7 @@ export default Ember.Service.extend({
       return Ember.RSVP.Promise.resolve(this.get('agent'));
     }
 
-    return StratumnSDK
+    return StratumnAgentClient
       .getAgent(location.protocol + '//' + location.hostname + ':' + ENV.APP.AGENT_PORT)
       .then(agent => {
         augmentAgent(agent);
