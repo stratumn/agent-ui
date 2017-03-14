@@ -20,7 +20,7 @@ export default Ember.Route.extend({
       .getAgent()
       .then(agent => {
         appendActions = agent.actions.slice(1);
-        return agent.findSegments(params);
+        return agent.findSegments(Object.assign({ limit: -1 }, params));
       })
       .then(segments => ({ mapId: params.mapId, segments, appendActions }));
   },
