@@ -63,7 +63,6 @@ export default Ember.Component.extend({
   },
 
   resetArgs() {
-    const actions = this.get('appendActions');
     const selectedAction = this.get('selectedAction');
     this.set('args', selectedAction.args.map(name => ({ name })));
   }
