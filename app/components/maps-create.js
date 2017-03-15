@@ -22,8 +22,6 @@ export default Ember.Component.extend({
 
   actions: {
 
-    void() {},
-
     onClose() {
       this.get('onClose')();
     },

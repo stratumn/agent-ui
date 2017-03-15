@@ -13,7 +13,6 @@ export default Ember.Controller.extend({
   stratumn: Ember.inject.service('stratumn'),
 
   actions: {
-
     createMap(...args) {
       return this
         .get('stratumn')
@@ -50,7 +49,6 @@ export default Ember.Controller.extend({
           throw(err);
         });
     }
-
   },
 
   validateLinkHash: [{
@@ -68,5 +66,4 @@ export default Ember.Controller.extend({
       return inputValue.length < 1 || regex.test(inputValue);
     }
   }],
-
 });

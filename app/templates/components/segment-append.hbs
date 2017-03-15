@@ -8,42 +8,38 @@
 
 {{#paper-dialog clickOutsideToClose=true onClose=(action "onClose")}}
   {{#paper-form onSubmit=(action "onSubmit") as |form|}}
-    <form {{action "void" on="submit"}}>
-
-      {{#paper-toolbar}}
-        <div class="md-toolbar-tools">
-          <h2>Append segment</h2>
-          <span class="flex"></span>
-          {{#paper-button iconButton=true onClick=(action "onClose")}}
-            {{paper-icon icon="close"}}
-          {{/paper-button}}
-        </div>
-      {{/paper-toolbar}}
-
-      {{#paper-dialog-content}}
-        {{#if error}}
-          <p class="error"><strong>Error {{error.status}}:</strong> {{error.message}}</p>
-        {{/if}}
-        {{#paper-select
-          block=true
-          placeholder="Action"
-          selected=selectedAction
-          onChange=(action "changeSelectedAction")
-          options=appendActions
-          as |action|
-        }}
-          {{action.name}}
-        {{/paper-select}}
-        {{#each args as |arg|}}
-          {{paper-input label=arg.name value=arg.value block=true onChange=(action (mut arg.value))}}
-        {{/each}}
-      {{/paper-dialog-content}}
-
-      {{#paper-dialog-actions class="layout-row"}}
+    {{#paper-toolbar}}
+      <div class="md-toolbar-tools">
+        <h2>Append segment</h2>
         <span class="flex"></span>
-        {{#paper-button type="submit" primary=true onClick=(action form.onSubmit)}}Submit{{/paper-button}}
-      {{/paper-dialog-actions}}
+        {{#paper-button iconButton=true onClick=(action "onClose")}}
+          {{paper-icon icon="close"}}
+        {{/paper-button}}
+      </div>
+    {{/paper-toolbar}}
 
-    </form>
+    {{#paper-dialog-content}}
+      {{#if error}}
+        <p class="error"><strong>Error {{error.status}}:</strong> {{error.message}}</p>
+      {{/if}}
+      {{#paper-select
+        block=true
+        placeholder="Action"
+        selected=selectedAction
+        onChange=(action "changeSelectedAction")
+        options=appendActions
+        as |action|
+      }}
+        {{action.name}}
+      {{/paper-select}}
+      {{#each args as |arg|}}
+        {{paper-input label=arg.name value=arg.value block=true onChange=(action (mut arg.value))}}
+      {{/each}}
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button type="submit" primary=true}}Submit{{/paper-button}}
+    {{/paper-dialog-actions}}
   {{/paper-form}}
 {{/paper-dialog}}

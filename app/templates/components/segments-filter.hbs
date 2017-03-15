@@ -7,45 +7,42 @@
 -->
 
 {{#paper-form onSubmit=(action "onSubmit") as |form|}}
-  <form {{action "void" on="submit"}}>
-    {{#paper-content class="md-padding"}}
-      <div class="layout-row">
-        {{paper-input
-          class="layout-column flex-25"
-          label="Map ID"
-          value=mapId
-          onChange=(action (mut mapId))
+  {{#paper-content class="md-padding"}}
+    <div class="layout-row">
+      {{paper-input
+        class="layout-column flex-25"
+        label="Map ID"
+        value=mapId
+        onChange=(action (mut mapId))
+      }}
+      {{paper-input
+        class="layout-column flex-25"
+        label="Prev link hash"
+        value=prevLinkHash
+        onChange=(action (mut prevLinkHash))
+        customValidations=validateLinkHash
+      }}
+      {{paper-input
+        class="layout-column flex-25"
+        label="Tags"
+        value=tags
+        onChange=(action (mut tags))
+      }}
+        {{#paper-button
+          class="layout-column flex-15"
+          type="submit"
+          primary=true
+          disabled=form.isInvalid
         }}
-        {{paper-input
-          class="layout-column flex-25"
-          label="Prev link hash"
-          value=prevLinkHash
-          onChange=(action (mut prevLinkHash))
-          customValidations=validateLinkHash
+          Filter
+        {{/paper-button}}
+        {{#paper-button
+          class="layout-column flex-10"
+          iconButton=true
+          onClick=(action "reset")
         }}
-        {{paper-input
-          class="layout-column flex-25"
-          label="Tags"
-          value=tags
-          onChange=(action (mut tags))
-        }}
-          {{#paper-button
-            class="layout-column flex-15"
-            type="submit"
-            primary=true
-            onClick=(action form.onSubmit)
-            disabled=form.isInvalid
-          }}
-            Filter
-          {{/paper-button}}
-          {{#paper-button
-            class="layout-column flex-10"
-            iconButton=true
-            onClick=(action "reset")
-          }}
-            {{paper-icon "clear"}}
-          {{/paper-button}}
-      </div>
-    {{/paper-content}}
-  </form>
+          {{paper-icon "clear"}}
+        {{/paper-button}}
+    </div>
+  {{/paper-content}}
 {{/paper-form}}

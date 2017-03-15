@@ -17,15 +17,12 @@ export default Base.extend({
     },
 
     appendSegmentThenUpdate(...args) {
-      this.actions
+      return this.actions
         .appendSegment.apply(this, args)
         .then(segment => {
           this.set('model.segments', [...this.get('model.segments'), segment]);
           this.set('showAppendSegmentDialog', false);
-        })
-        .catch(() => {});
+        });
     }
-
   }
-
 });

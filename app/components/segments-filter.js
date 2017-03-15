@@ -11,8 +11,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
 
-    void() {},
-
     onSubmit() {
       const filter = {
         mapId: this.get('mapId') || '',

@@ -21,8 +21,6 @@ export default Ember.Component.extend({
 
   actions: {
 
-    void() {},
-
     onClose() {
       this.get('onClose')();
     },
@@ -44,7 +42,7 @@ export default Ember.Component.extend({
         return val;
       });
 
-      this.get('onSubmit')(
+      return this.get('onSubmit')(
         this.get('segment').meta.linkHash,
         this.get('selectedAction').name,
         ...args
@@ -59,7 +57,6 @@ export default Ember.Component.extend({
       this.set('selectedAction', value);
       this.resetArgs();
     }
-
   },
 
   resetArgs() {
