@@ -11,14 +11,15 @@
     "build": "ember build --environment=production",
     "start": "ember server",
     "test": "ember test",
-    "express": "node express.js"
+    "express": "node express.js",
+    "update-license-headers": "./update-license-headers.sh"
   },
   "repository": "",
   "engines": {
     "node": ">= 0.10.0"
   },
   "author": "",
-  "license": "MPL-2.0",
+  "license": "Apache-2.0",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
     "ember-ajax": "^2.0.1",
