@@ -14,26 +14,26 @@
   limitations under the License.
 */
 
-$primary: "cyan";
+$primary: "indigo";
 
 @import "color-palette";
 
-$color-cyan: (
-  '50':   #295761,
-  '100':  #295761,
-  '200':  #4897A8,
-  '300':  #4897A8,
-  '400':  #55aec5,
-  '500':  #7BC0D2,
-  '600':  lighten(#7BC0D2, 5%),
-  '700':  #7BC0D2,
-  '800':  #7BC0D2,
-  '900':  #7BC0D2,
-  'A100': #7BC0D2,
-  'A200': #7BC0D2,
-  'A400': #7BC0D2,
-  'A700': #7BC0D2,
-  'contrast': $dark-contrast-color
+$color-indigo: (
+  '50':   darken(#293047, 25%),
+  '100':  darken(#293047, 20%),
+  '200':  darken(#293047, 15%),
+  '300':  darken(#293047, 10%),
+  '400':  darken(#293047, 5%),
+  '500':  #293047,
+  '600':  lighten(#293047, 5%),
+  '700':  lighten(#293047, 10%),
+  '800':  lighten(#293047, 15%),
+  '900':  lighten(#293047, 20%),
+  'A100': lighten(#293047, 25%),
+  'A200': lighten(#293047, 30%),
+  'A400': lighten(#293047, 35%),
+  'A700': lighten(#293047, 40%),
+  'contrast': white
 );
 
 @import "ember-paper";
