@@ -29,15 +29,21 @@ export default Ember.Route.extend({
   },
 
   model(params) {
+    let processObject;
     const filter = JSON.parse(JSON.stringify(params));
     filter.tags = params.tags.split(',');
     return this
       .get('stratumn')
       .getAgent()
       .then(agent => {
-        return agent.findSegments(filter);
+        processObject = agent.processes
+          .find(p => p.name === params.process);
+        return processObject
+          .findSegments(filter);
       }).then(segments => {
         return {
+          processObject,
+          process: params.process,
           segments,
           mapId: filter.mapId,
           prevLinkHash: filter.prevLinkHash,
@@ -46,9 +52,20 @@ export default Ember.Route.extend({
       });
   },
 
-  renderTemplate() {
+  renderTemplate(ctrl, model) {
     this._super();
     this.render('segments-toolbar', { into: 'application', outlet: 'toolbar' });
+    this.get('stratumn').getAgent()
+      .then(agent =>
+        this.render('processes-index', {
+          into: 'application',
+          outlet: 'sidenav',
+          model: {
+            processes: agent.processes,
+            displayDetails: true,
+            currentProcess: model.process
+          }
+        }));
   },
 
   resetController(controller, isExiting) {

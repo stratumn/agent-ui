@@ -21,22 +21,17 @@ export default Ember.Route.extend({
   stratumn: Ember.inject.service('stratumn'),
 
   model(params) {
-    let appendActions;
-    let process;
     return this
       .get('stratumn')
       .getAgent()
-      .then(agent => {
-        process = agent.processes.find(p => p.name === params.process);
-        appendActions = process.actions.slice(1);
-        return process.findSegments(Object.assign({ limit: -1 }, params));
-      })
-      .then(segments => ({ mapId: params.mapId, segments, appendActions, process: params.process, processObject: process }));
+      .then(agent =>
+        ({ processObject: agent.processes.find(p => p.name === params.process) })
+      );
   },
 
   renderTemplate(ctrl, model) {
     this._super();
-    this.render('map-explorer-toolbar', { into: 'application', outlet: 'toolbar' });
+    this.render('process-toolbar', { into: 'application', outlet: 'toolbar' });
     this.get('stratumn').getAgent()
       .then(agent =>
         this.render('processes-index', {
@@ -44,14 +39,9 @@ export default Ember.Route.extend({
           outlet: 'sidenav',
           model: {
             processes: agent.processes,
-            currentProcess: model.process
+            currentProcess: model.processObject.name
           }
         }));
-  },
-
-  resetController(controller) {
-    controller.set('showAppendSegmentDialog', false);
-    controller.set('error');
   }
 
 });

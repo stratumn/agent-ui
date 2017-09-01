@@ -27,6 +27,10 @@ export default Ember.Route.extend({
   renderTemplate() {
     this._super();
     this.render('index-toolbar', { into: 'application', outlet: 'toolbar' });
+    this.get('stratumn').getAgent()
+      .then(agent =>
+        this.render('processes-index', { into: 'application', outlet: 'sidenav', model: agent })
+      );
   }
 
 });

@@ -16,7 +16,11 @@
 
 <h1>
   <span class="hide show-gt-sm">
-    {{#link-to "segments"}}Segments{{/link-to}}
+    {{#link-to "process" model.process}}{{model.process}}{{/link-to}}
+    {{paper-icon icon="chevron-right"}}
+  </span>
+  <span class="hide show-gt-sm">
+    {{#link-to "segments" model.process}}Segments{{/link-to}}
     {{paper-icon icon="chevron-right"}}
   </span>
   {{short-hash model.segment.meta.linkHash}}

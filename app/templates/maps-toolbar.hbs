@@ -14,7 +14,15 @@
   limitations under the License.
 -->
 
-<h1>Maps</h1>
+<h1>
+  <span class="hide show-gt-sm">
+    {{#link-to "process" model.processObject.name}}
+    {{model.processObject.name}}
+    {{/link-to}}
+    {{paper-icon icon="chevron-right"}}
+  </span>
+    Maps
+</h1>
 <span class="flex"></span>
 {{#paper-button onClick=(action "toggleCreateMapDialog")}}
   {{paper-icon "add" size=30}}

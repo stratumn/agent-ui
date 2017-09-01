@@ -21,15 +21,18 @@ export default Ember.Route.extend({
   stratumn: Ember.inject.service('stratumn'),
 
   model(params) {
-    let agent;
+    let process;
 
     return this
       .get('stratumn')
       .getAgent()
-      .then(res => {
-        agent = res;
-        return agent.getSegment(params.linkHash);
+      .then(agent => {
+        process = agent.processes.find(p => p.name === params.process);
+        return process.getSegment(params.linkHash);
       }).then(segment => {
+        if (!segment.link.meta.arguments) {
+          segment.link.meta.arguments = [];
+        }
         const args = segment.link.meta.arguments.map(a =>
           JSON.stringify(a)
         ).join(', ');
@@ -37,15 +40,25 @@ export default Ember.Route.extend({
         segment.json = JSON.stringify(segment, null, '  ');
         segment.action = `${segment.link.meta.action}(${args})`;
 
-        const appendActions = agent.actions.slice(1);
+        const appendActions = process.actions.slice(1);
 
-        return { appendActions, segment };
+        return { appendActions, segment, process: params.process };
       });
   },
 
-  renderTemplate() {
+  renderTemplate(ctrl, model) {
     this._super();
     this.render('segment-toolbar', { into: 'application', outlet: 'toolbar' });
+    this.get('stratumn').getAgent()
+      .then(agent =>
+        this.render('processes-index', {
+          into: 'application',
+          outlet: 'sidenav',
+          model: {
+            processes: agent.processes,
+            currentProcess: model.process
+          }
+        }));
   },
 
   resetController(controller) {

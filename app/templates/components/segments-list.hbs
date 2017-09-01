@@ -18,7 +18,7 @@
   {{#paper-list}}
     {{paper-divider}}
     {{#each segments as |segment|}}
-      {{#paper-item onClick=(action "onClickSegment" segment.meta.linkHash)}}
+      {{#paper-item onClick=(action "onClickSegment" process segment.meta.linkHash)}}
         <p>
           <samp class="hide show-lg">{{segment.meta.linkHash}}</samp>
           <samp class="hide-gt-md">{{short-hash segment.meta.linkHash}}</samp>

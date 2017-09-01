@@ -24,7 +24,7 @@ export default Base.extend({
 
   limit: ENV.APP.ITEMS_PER_PAGE,
 
-  hasNoMore: Ember.computed('limit', 'model', function() {
+  hasNoMore: Ember.computed('limit', 'model', function () {
     return this.get('model').maps.length < this.get('limit');
   }),
 
@@ -44,9 +44,9 @@ export default Base.extend({
 
     createMapThenViewSegment(...args) {
       this.actions
-        .createMap.apply(this, args)
-        .then(segment => this.actions.viewSegment.call(this, segment.meta.linkHash))
-        .catch(() => {});
+        .createMap.apply(this, [this.get('model').processObject, args])
+        .then(segment => this.actions.viewSegment.call(this, this.get('model').processObject, segment.meta.linkHash))
+        .catch(() => { });
     }
 
   }

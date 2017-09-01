@@ -18,9 +18,15 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  stratumn: Ember.inject.service('stratumn'),
+
   renderTemplate() {
     this._super();
     this.render('license-toolbar', { into: 'application', outlet: 'toolbar' });
+    this.get('stratumn').getAgent()
+      .then(agent =>
+        this.render('processes-index', { into: 'application', outlet: 'sidenav', model: agent })
+      );
   }
 
 });
