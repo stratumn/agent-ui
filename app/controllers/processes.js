@@ -15,23 +15,27 @@
 */
 
 import Ember from 'ember';
+import Base from 'agent-ui/controllers/base';
+import ENV from 'agent-ui/config/environment';
 
-export default Ember.Component.extend({
+export default Base.extend({
+
+  queryParams: ['limit'],
+
+  limit: ENV.APP.ITEMS_PER_PAGE,
+
+  hasNoMore: Ember.computed('limit', 'model', function() {
+    return this.get('model').processes.length < this.get('limit');
+  }),
 
   actions: {
 
-    onClickMap(process, mapId) {
-      this.get('onClickMap')(process, mapId);
-    },
-
-    onClickViewMapSegments(process, mapId) {
-      this.get('onClickViewMapSegments')(process, mapId);
-    },
-
-    onLoadMore() {
-      this.get('onLoadMore')();
-    }
-
+    loadMore() {
+      if (!this.get('hasNoMore')) {
+        this.transitionToRoute({
+          queryParams: { limit: this.get('limit') + ENV.APP.ITEMS_PER_PAGE }
+        });
+      }
+    },  
   }
-
 });

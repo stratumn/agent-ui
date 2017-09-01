@@ -24,19 +24,17 @@
     {{#paper-content class="flex layout-column"}}
 
       {{#paper-toolbar class="logo"}}
+        {{#link-to "index"}}
         Indigo Agent UI
+        {{/link-to}}
       {{/paper-toolbar}}
 
       {{#paper-list class="flex layout-column"}}
-        {{#link-to "index"}}
-          {{#paper-item}}Agent info{{/paper-item}}
-        {{/link-to}}
-        {{#link-to "maps"}}
-          {{#paper-item}}Maps{{/paper-item}}
-        {{/link-to}}
-        {{#link-to "segments"}}
-          {{#paper-item}}Segments{{/paper-item}}
-        {{/link-to}}
+
+      {{#paper-content}}
+      {{outlet "sidenav"}}
+      {{/paper-content}}
+
         <span class="flex"></span>
         <a href="http://indigoframework.com" target="_blank">
           {{#paper-item}}Documentation{{/paper-item}}

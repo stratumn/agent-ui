@@ -14,16 +14,16 @@
   limitations under the License.
 -->
 
-{{#if maps.length}}
+{{#if processes.length}}
   {{#paper-list}}
-    {{#each maps as |mapId|}}
-      {{#paper-item onClick=(action "onClickMap" process mapId)}}
+    {{#each processes as |process|}}
+      {{#paper-item onClick=(action "onClickViewProcessMaps" process)}}
         <p>
-          <samp class="hide show-md show-lg">{{mapId}}</samp>
-          <samp class="hide-gt-sm">{{short-hash mapId}}</samp>
+          <samp class="hide show-md show-lg">{{process.name}}</samp>
+          <samp class="hide-gt-sm">{{short-hash process.name}}</samp>
         </p>
-        {{#paper-button class="md-secondary" onClick=(action "onClickViewMapSegments" process mapId)}}
-          View segments
+        {{#paper-button class="md-secondary" onClick=(action "onClickViewProcessMaps" process)}}
+          View maps
         {{/paper-button}}
       {{/paper-item}}
       {{paper-divider}}
@@ -35,6 +35,6 @@
 {{else}}
   {{#paper-content class="md-padding"}}
     <h2>Nothing to see here</h2>
-    <p>You don't have any maps at this point. Create one to get started.</p>
+    <p>You don't have any processes at this point. Create one to get started.</p>
   {{/paper-content}}
 {{/if}}

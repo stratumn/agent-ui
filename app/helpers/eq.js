@@ -16,22 +16,5 @@
 
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-
-  actions: {
-
-    onClickMap(process, mapId) {
-      this.get('onClickMap')(process, mapId);
-    },
-
-    onClickViewMapSegments(process, mapId) {
-      this.get('onClickViewMapSegments')(process, mapId);
-    },
-
-    onLoadMore() {
-      this.get('onLoadMore')();
-    }
-
-  }
-
-});
+const eq = (params) => params[0] === params[1];
+export default Ember.Helper.helper(eq);

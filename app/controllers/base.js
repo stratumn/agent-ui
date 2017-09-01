@@ -14,6 +14,7 @@
   limitations under the License.
 */
 
+import ENV from 'agent-ui/config/environment';
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -21,40 +22,53 @@ export default Ember.Controller.extend({
   stratumn: Ember.inject.service('stratumn'),
 
   actions: {
-    createMap(...args) {
-      return this
-        .get('stratumn')
-        .getAgent()
-        .then(agent => agent.createMap(...args))
+    createMap(process, ...args) {
+      return process
+        .createMap(...args)
         .catch(err => {
           console.log(err);
           this.set('error', err);
-          throw(err);
+          throw (err);
         });
     },
 
-    exploreMap(mapId) {
-      this.transitionToRoute('map-explorer', mapId);
+    viewProcessMaps(process) {
+      process
+        .getMapIds()
+        .then(mapIds =>
+          this.transitionToRoute('maps', { maps: mapIds, process: process.name, processObject: process }));
     },
 
-    viewMapSegments(mapId) {
-      this.transitionToRoute('segments', { queryParams: { mapId }});
+    exploreMap(process, mapId) {
+      const appendActions = process.actions.slice(1);
+      process.findSegments({ limit: -1, mapId })
+        .then(segments =>
+          this.transitionToRoute('map-explorer', { mapId, process: process.name, processObject: process, appendActions, segments }));
     },
 
-    viewSegment(linkHash) {
-      this.transitionToRoute('segment', linkHash);
+    viewMapSegments(process, mapId) {
+      process
+        .findSegments({ mapIds: mapId })
+        .then(segments =>
+          this.transitionToRoute('segments', { mapId, process: process.name, segments, prevLinkHash: '', tags: '', limit: ENV.APP.ITEMS_PER_PAGE, processObject: process }));
     },
 
-    appendSegment(linkHash, action, ...args) {
-      return this
-        .get('stratumn')
-        .getAgent()
-        .then(agent => agent.getSegment(linkHash))
-        .then(segment => segment[action](...args))
+    viewSegment(process, linkHash) {
+      const appendActions = process.actions.slice(1);
+      process
+        .getSegment(linkHash)
+        .then(segment => {
+          this.transitionToRoute('segment', { segment, process: process.name, processObject: process, linkHash, appendActions });
+        });
+    },
+
+    appendSegment(process, linkHash, action, ...args) {
+      return process.getSegment(linkHash)
+        .then(segment =>
+          segment[action](...args))
         .catch(err => {
-          console.log(err);
           this.set('error', err);
-          throw(err);
+          throw (err);
         });
     }
   },

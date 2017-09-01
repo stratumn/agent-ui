@@ -15,102 +15,26 @@
 -->
 
 {{#paper-content class="md-padding"}}
-  <div class="index-content">
+<div class="index-content">
 
-    <p>
-      An agent executes the logic of your workflow.
-      An instance of a workflow is called a map.
-      It contains the different steps of the workflow, called segments.
-    </p>
+  <p>
+    An agent executes the logic of your processes. A process is defined by a set of actions that may be used in the workflow. An instance of a process is called a map. It contains the different steps
+    of the process, called segments.
+  </p>
 
-    {{paper-divider}}
+  {{paper-divider}}
 
-    <h2>Endpoint</h2>
-    <p><samp><a href="{{model.url}}" target="_blank">{{model.url}}</a></samp></p>
-    <p class="light">
-      <small>
+  <h2>Endpoint</h2>
+  <p><samp><a href="{{model.url}}" target="_blank">{{model.url}}</a></samp></p>
+  <p class="light">
+    <small>
         You can use this URL to connect to your agent, using the
         <a class="nav-link" href="https://github.com/stratumn/agent-client-js/tree/alpha" target="_blank">Stratumn Javascript Agent Client</a>
         for instance.
       </small>
-    </p>
+  </p>
 
-    {{paper-divider}}
+  {{paper-divider}} 
 
-    <h2>Actions</h2>
-    <ul>
-      {{#each model.actions as |action|}}
-      <li><samp>{{action.signature}}</samp></li>
-      {{/each}}
-    </ul>
-    <p class="light">
-      <small>
-        These are the procedures that define how segments are added to your maps.
-      </small>
-    </p>
-
-    {{paper-divider}}
-
-    <h2>Store</h2>
-    <p class="light">
-      <small>
-        A store is responsible for saving your data. There are different adapters available depending on your needs.
-      </small>
-    </p>
-
-    <h3>Store adapter name</h3>
-    <p><samp>{{model.storeInfo.adapter.name}}</samp></p>
-
-    {{#if model.storeInfo.adapter.version}}
-      <h3>Store adapter version</h3>
-      <p><samp>{{model.storeInfo.adapter.version}}</samp></p>
-    {{/if}}
-
-    {{#if model.storeInfo.adapter.commit}}
-      <h3>Store adapter commit</h3>
-      <p><samp>{{model.storeInfo.adapter.commit}}</samp></p>
-    {{/if}}
-
-    {{#if model.storeInfo.adapter.description}}
-      <h3>Store adapter description</h3>
-      <p><samp>{{model.storeInfo.adapter.description}}</samp></p>
-    {{/if}}
-
-    {{paper-divider}}
-
-    <h2>Fossilizer</h2>
-    <p class="light">
-      <small>
-        A fossilizer adds the steps of your workflow to a timeline, such as a Blockchain or a trusted timestamping authority.
-      </small>
-    </p>
-
-    {{#if model.fossilizerInfo}}
-      <h3>Fossilizer adapter name</h3>
-      <p><samp>{{model.fossilizerInfo.adapter.name}}</samp></p>
-
-      {{#if model.fossilizerInfo.adapter.version}}
-        <h3>Fossilizer adapter version</h3>
-        <p><samp>{{model.fossilizerInfo.adapter.version}}</samp></p>
-      {{/if}}
-
-      {{#if model.fossilizerInfo.adapter.commit}}
-        <h3>Fossilizer adapter commit</h3>
-        <p><samp>{{model.fossilizerInfo.adapter.commit}}</samp></p>
-      {{/if}}
-
-      {{#if model.fossilizerInfo.adapter.description}}
-        <h3>Fossilizer adapter description</h3>
-        <p><samp>{{model.fossilizerInfo.adapter.description}}</samp></p>
-      {{/if}}
-
-      {{#if model.fossilizerInfo.adapter.blockchain}}
-        <h3>Fossilizer adapter blockchain</h3>
-        <p><samp>{{model.fossilizerInfo.adapter.blockchain}}</samp></p>
-      {{/if}}
-    {{else}}
-      <p>Your agent is not connected to a fossilizer.</p>
-    {{/if}}
-
-  </div>
+</div>
 {{/paper-content}}

@@ -19,29 +19,36 @@ import Ember from 'ember';
 import ENV from 'agent-ui/config/environment';
 
 function augmentAgent(agent) {
-  agent.actions = Object
-    .keys(agent.agentInfo.actions)
-    .map(name => {
-      const args = agent.agentInfo.actions[name].args;
-      const signature = `${name}(${args.join(', ')})`;
+  agent.processes = Object.keys(agent.processes).reduce((acc, p) => {
+    const updatedProcesses = acc;
+    const process = agent.processes[p];
+    process.actions = Object
+      .keys(process.processInfo.actions)
+      .map(name => {
+        const args = process.processInfo.actions[name].args;
+        const signature = `${name}(${args.join(', ')})`;
 
-      return { name, args, signature };
-    })
-    .sort((a, b) => {
-      if (a.name === 'init') {
-        return -1;
-      }
+        return { name, args, signature };
+      })
+      .sort((a, b) => {
+        if (a.name === 'init') {
+          return -1;
+        }
 
-      if (b.name === 'init') {
-        return 1;
-      }
+        if (b.name === 'init') {
+          return 1;
+        }
 
-      return a.name.localeCompare(b.name);
-    });
+        return a.name.localeCompare(b.name);
+      });
+    updatedProcesses.push(process);
+    return updatedProcesses;
+  }, []);
 }
 
 export default Ember.Service.extend({
   agent: null,
+  processes: null,
 
   getAgent() {
     if (this.get('agent')) {

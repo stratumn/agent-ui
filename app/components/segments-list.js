@@ -20,8 +20,8 @@ export default Ember.Component.extend({
 
   actions: {
 
-    onClickSegment(linkHash) {
-      this.get('onClickSegment')(linkHash);
+    onClickSegment(process, linkHash) {
+      this.get('onClickSegment')(process, linkHash);
     },
 
     onLoadMore() {

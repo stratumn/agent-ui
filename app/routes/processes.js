@@ -23,39 +23,25 @@ export default Ember.Route.extend({
 
   queryParams: { limit: { refreshModel: true } },
 
-  model(params) {
-    let process;
+  model() {
     return this
       .get('stratumn')
       .getAgent()
-      .then(agent => {
-        process = agent.processes.find(p => p.name === params.process);
-        return process.getMapIds(params);
-      })
-      .then(maps => {
-        return { processObject: process, maps };
-      });
+      .then(agent => ({ processes: agent.processes }));
   },
 
-  renderTemplate(ctrl, model) {
+  renderTemplate() {
     this._super();
-    this.render('maps-toolbar', { into: 'application', outlet: 'toolbar' });
+    this.render('processes-toolbar', { into: 'application', outlet: 'toolbar' });
     this.get('stratumn').getAgent()
       .then(agent =>
-        this.render('processes-index', {
-          into: 'application',
-          outlet: 'sidenav',
-          model: {
-            processes: agent.processes,
-            currentProcess: model.processObject.name
-          }
-        }));
+        this.render('processes-index', { into: 'application', outlet: 'sidenav', model: agent })
+      );
   },
 
   resetController(controller, isExiting) {
     if (isExiting) {
       controller.set('limit', ENV.APP.ITEMS_PER_PAGE);
-      controller.set('showCreateMapDialog', false);
       controller.set('error');
     }
   }

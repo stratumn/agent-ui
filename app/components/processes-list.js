@@ -20,12 +20,8 @@ export default Ember.Component.extend({
 
   actions: {
 
-    onClickMap(process, mapId) {
-      this.get('onClickMap')(process, mapId);
-    },
-
-    onClickViewMapSegments(process, mapId) {
-      this.get('onClickViewMapSegments')(process, mapId);
+    onClickViewProcessMaps(process) {
+      this.get('onClickViewProcessMaps')(process);
     },
 
     onLoadMore() {

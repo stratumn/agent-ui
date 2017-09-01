@@ -52,7 +52,6 @@ export default Ember.Component.extend({
 
         return val;
       });
-
       this.get('onSubmit')(...args);
     }
   },

@@ -17,6 +17,7 @@
 {{#if showAppendSegmentDialog}}
   {{segment-append
     segment=segment
+    process=processObject
     error=error
     appendActions=model.appendActions
     onClose=(action "toggleAppendSegmentDialog")
@@ -25,5 +26,5 @@
 {{/if}}
 
 {{#paper-content}}
-  {{map-explorer chainscript=model.segments onSelectSegment=(action (mut segment))}}
+ {{map-explorer chainscript=model.segments onSelectSegment=(action (mut segment))}}
 {{/paper-content}}

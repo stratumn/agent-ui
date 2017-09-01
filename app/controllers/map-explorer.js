@@ -26,7 +26,7 @@ export default Base.extend({
 
     appendSegmentThenUpdate(...args) {
       return this.actions
-        .appendSegment.apply(this, args)
+        .appendSegment.apply(this, [...[this.get('model').processObject], ...args])
         .then(segment => {
           this.set('model.segments', [...this.get('model.segments'), segment]);
           this.set('showAppendSegmentDialog', false);

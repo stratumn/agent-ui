@@ -16,7 +16,7 @@
 
 {{#if showCreateMapDialog}}
   {{maps-create
-  	action=model.agent.actions.[0]
+  	action=model.processObject.actions.[0]
   	error=error
   	onClose=(action "toggleCreateMapDialog")
   	onSubmit=(action "createMapThenViewSegment")
@@ -26,6 +26,7 @@
 {{#paper-content}}
   {{maps-list
   	maps=model.maps
+    process=model.processObject
   	hasNoMore=hasNoMore
   	onClickMap=(action "exploreMap")
   	onClickViewMapSegments=(action "viewMapSegments")

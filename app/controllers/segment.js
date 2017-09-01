@@ -30,7 +30,7 @@ export default Base.extend({
 
     appendSegmentThenViewNext(...args) {
       this.actions
-        .appendSegment.apply(this, args)
+        .appendSegment.apply(this, [...[this.get('model').processObject], ...args])
         .then(segment => {
           this.transitionToRoute('segment', segment.meta.linkHash);
         })

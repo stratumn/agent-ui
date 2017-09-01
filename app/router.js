@@ -23,10 +23,12 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('maps');
-  this.route('map-explorer', { path: '/maps/:mapId' });
-  this.route('segments');
-  this.route('segment', { path: '/segments/:linkHash' });
+  this.route('processes');
+  this.route('process', {path: '/:process'});
+  this.route('maps', {path: '/:process/maps'});
+  this.route('map-explorer', { path: '/:process/maps/:mapId' });
+  this.route('segments', {path: '/:process/segments'});
+  this.route('segment', { path: '/:process/segments/:linkHash' });
   this.route('404', { path: '*path' });
   this.route('license');
 });
