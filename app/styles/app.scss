@@ -33,7 +33,7 @@ $color-indigo: (
   'A200': lighten(#293047, 30%),
   'A400': lighten(#293047, 35%),
   'A700': lighten(#293047, 40%),
-  'contrast': white
+  'contrastDefaultColor': $light-contrast-color
 );
 
 @import "ember-paper";
