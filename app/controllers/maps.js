@@ -46,8 +46,8 @@ export default Base.extend({
       this.actions
         .createMap.apply(this, args)
         .then(segment => this.actions.viewSegment.call(this, segment.meta.linkHash))
-        .catch(() => {});
+        .catch(() => {});
     }
-  
+
   }
 });

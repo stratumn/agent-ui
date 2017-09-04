@@ -46,7 +46,9 @@ export default Ember.Component.extend({
         try {
           val = JSON.parse(val);
         }
+        /* eslint-disable no-empty */
         catch (err) { }
+        /* eslint-enable no-empty */
 
         return val;
       });

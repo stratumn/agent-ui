@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
     },
 
     viewMapSegments(mapId) {
-      this.transitionToRoute('segments', { queryParams: { mapId } });
+      this.transitionToRoute('segments', { queryParams: { mapId }});
     },
 
     viewSegment(linkHash) {
