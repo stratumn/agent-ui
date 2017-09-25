@@ -44,7 +44,7 @@ export default Base.extend({
 
     createMapThenViewSegment(...args) {
       this.actions
-        .createMap.apply(this, [this.get('model').processObject, args])
+        .createMap.apply(this, [...[this.get('model').processObject], ...args])
         .then(segment => this.actions.viewSegment.call(this, this.get('model').processObject, segment.meta.linkHash))
         .catch(() => { });
     }
