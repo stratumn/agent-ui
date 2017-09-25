@@ -58,5 +58,9 @@ export default Ember.Component.extend({
 
   resetArgs() {
     this.set('args', this.get('action').args.map(name => ({ name })));
+  },
+
+  didDestroyElement() {
+    this.set("error", null)
   }
 });
