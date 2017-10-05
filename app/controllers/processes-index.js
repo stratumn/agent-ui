@@ -32,14 +32,11 @@ export default Base.extend({
     },
 
     transitionToProcessSegments(process) {
-      let mapIds;
       process.getMapIds()
         .then(maps => {
-          mapIds = maps;
           return process.findSegments({ mapIds: maps });
         })
         .then(segments => this.transitionToRoute('segments', {
-          mapIds,
           segments,
           processObject: process,
           process: process.name,
