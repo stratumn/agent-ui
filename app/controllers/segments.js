@@ -20,10 +20,10 @@ import ENV from 'agent-ui/config/environment';
 
 export default Base.extend({
 
-  queryParams: ['limit', 'mapId', 'prevLinkHash', 'tags'],
+  queryParams: ['limit', 'mapIds', 'prevLinkHash', 'tags'],
 
   limit: ENV.APP.ITEMS_PER_PAGE,
-  mapId: '',
+  mapIds: '',
   prevLinkHash: '',
   tags: '',
 
@@ -35,9 +35,9 @@ export default Base.extend({
 
     updateFilter(filter) {
       this.transitionToRoute({
-          queryParams: {
+        queryParams: {
           limit: ENV.APP.ITEMS_PER_PAGE,
-          mapId: filter.mapId || '',
+          mapIds: filter.mapIds || '',
           prevLinkHash: filter.prevLinkHash || '',
           tags: filter.tags || ''
         }
@@ -51,7 +51,5 @@ export default Base.extend({
         });
       }
     }
-
   }
-
 });

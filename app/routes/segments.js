@@ -23,7 +23,7 @@ export default Ember.Route.extend({
 
   queryParams: {
     limit: { refreshModel: true },
-    mapId: { refreshModel: true },
+    mapIds: { refreshModel: true },
     prevLinkHash: { refreshModel: true },
     tags: { refreshModel: true }
   },
@@ -31,7 +31,16 @@ export default Ember.Route.extend({
   model(params) {
     let processObject;
     const filter = JSON.parse(JSON.stringify(params));
-    filter.tags = params.tags.split(',');
+    if (params.mapIds.length === 0) {
+      delete filter.mapIds
+    } else {
+      filter.mapIds = params.mapIds.split(',')
+    }
+    if (params.tags.length === 0) {
+      delete filter.tags
+    } else {
+      filter.tags = params.tags.split(',')
+    }
     return this
       .get('stratumn')
       .getAgent()
@@ -45,9 +54,9 @@ export default Ember.Route.extend({
           processObject,
           process: params.process,
           segments,
-          mapId: filter.mapId,
+          mapIds: filter.mapIds ? filter.mapIds.join(' ') : '',
           prevLinkHash: filter.prevLinkHash,
-          tags: filter.tags.join(' ')
+          tags: filter.tags ? filter.tags.join(' ') : ''
         };
       });
   },
@@ -71,7 +80,7 @@ export default Ember.Route.extend({
   resetController(controller, isExiting) {
     if (isExiting) {
       controller.set('limit', ENV.APP.ITEMS_PER_PAGE);
-      controller.set('mapId', '');
+      controller.set('mapIds', '');
       controller.set('prevLinkHash', '');
       controller.set('tags', '');
     }

@@ -21,7 +21,7 @@ export default Ember.Component.extend({
 
     onSubmit() {
       const filter = {
-        mapId: this.get('mapId') || '',
+        mapIds: this.get('mapIds') ? this.get('mapIds').split(' ').join(',') : '',
         prevLinkHash: this.get('prevLinkHash') || '',
         tags: this.get('tags') ? this.get('tags').split(' ').join(',') : ''
       };
@@ -30,10 +30,10 @@ export default Ember.Component.extend({
     },
 
     reset() {
-      this.set('mapId', '');
+      this.set('mapIds', '');
       this.set('prevLinkHash', '');
       this.set('tags', '');
-      this.get('onSubmit')({ mapId: '', prevLinkHash: '', tags: '' });
+      this.get('onSubmit')({ mapIds: '', prevLinkHash: '', tags: '' });
     }
 
   }

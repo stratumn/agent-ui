@@ -41,16 +41,16 @@ export default Ember.Controller.extend({
 
     exploreMap(process, mapId) {
       const appendActions = process.actions.slice(1);
-      process.findSegments({ limit: -1, mapId })
+      process.findSegments({ limit: -1, mapIds: [mapId] })
         .then(segments =>
           this.transitionToRoute('map-explorer', { mapId, process: process.name, processObject: process, appendActions, segments }));
     },
 
     viewMapSegments(process, mapId) {
       process
-        .findSegments({ mapIds: mapId })
+        .findSegments({ mapIds: [mapId] })
         .then(segments =>
-          this.transitionToRoute('segments', { mapId, process: process.name, segments, prevLinkHash: '', tags: '', limit: ENV.APP.ITEMS_PER_PAGE, processObject: process }));
+          this.transitionToRoute('segments', { mapIds: mapId, process: process.name, segments, prevLinkHash: '', tags: '', limit: ENV.APP.ITEMS_PER_PAGE, processObject: process }));
     },
 
     viewSegment(process, linkHash) {
