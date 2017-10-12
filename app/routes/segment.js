@@ -17,39 +17,43 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
   stratumn: Ember.inject.service('stratumn'),
 
   model(params) {
     let process;
 
-    return this
-      .get('stratumn')
+    return this.get('stratumn')
       .getAgent()
       .then(agent => {
         process = agent.processes.find(p => p.name === params.process);
         return process.getSegment(params.linkHash);
-      }).then(segment => {
+      })
+      .then(segment => {
         if (!segment.link.meta.arguments) {
           segment.link.meta.arguments = [];
         }
-        const args = segment.link.meta.arguments.map(a =>
-          JSON.stringify(a)
-        ).join(', ');
+        const args = segment.link.meta.arguments
+          .map(a => JSON.stringify(a))
+          .join(', ');
 
         segment.json = JSON.stringify(segment, null, '  ');
         segment.action = `${segment.link.meta.action}(${args})`;
 
         const appendActions = process.actions.slice(1);
-
-        return { appendActions, segment, process: params.process };
+        return {
+          appendActions,
+          segment,
+          process: params.process,
+          processObject: process
+        };
       });
   },
 
   renderTemplate(ctrl, model) {
     this._super();
     this.render('segment-toolbar', { into: 'application', outlet: 'toolbar' });
-    this.get('stratumn').getAgent()
+    this.get('stratumn')
+      .getAgent()
       .then(agent =>
         this.render('processes-index', {
           into: 'application',
@@ -58,7 +62,8 @@ export default Ember.Route.extend({
             processes: agent.processes,
             currentProcess: model.process
           }
-        }));
+        })
+      );
   },
 
   resetController(controller) {
@@ -66,5 +71,4 @@ export default Ember.Route.extend({
     controller.set('showAppendSegmentDialog', false);
     controller.set('error');
   }
-
 });

@@ -15,66 +15,68 @@
 -->
 
 {{#paper-content class="md-padding"}}
-    <h1> {{model.processObject.name}} </h1>
+<h1> {{model.processObject.name}} </h1>
 
-    {{!-- DESCRIBE THE ACTIONS OF A PROCESS --}}
-    <h3>Actions</h3>
-    <ul>
-      {{#each model.processObject.actions as |action|}}
-      <li><samp>{{action.signature}}</samp></li>
-      {{/each}}
-    </ul>
-    <p class="light">
-      <small>
+{{!-- DESCRIBE THE ACTIONS OF A PROCESS --}}
+<h3>Actions</h3>
+<ul>
+  {{#each model.processObject.actions as |action|}}
+  <li><samp>{{action.signature}}</samp></li>
+  {{/each}}
+</ul>
+<p class="light">
+  <small>
         These are the procedures that define how segments are added to your maps.
       </small>
-    </p>
+</p>
 
-    {{!-- DESCRIBE THE STORE INFOS OF A PROCESS --}}
-    <h3>Store</h3>
-    <p class="light">
-      <small>
+{{!-- DESCRIBE THE STORE INFOS OF A PROCESS --}}
+<h3>Store</h3>
+<p class="light">
+  <small>
         A store is responsible for saving your data. There are different adapters available depending on your needs.
       </small>
-    </p>
-    <h4>Store adapter name</h4>
-    <p><samp>{{model.processObject.storeInfo.adapter.name}}</samp></p>
-    {{#if model.processObject.storeInfo.adapter.version}}
-    <h4>Store adapter version</h4>
-    <p><samp>{{model.processObject.storeInfo.adapter.version}}</samp></p>
-    {{/if}} {{#if model.processObject.storeInfo.adapter.commit}}
-    <h4>Store adapter commit</h4>
-    <p><samp>{{model.processObject.storeInfo.adapter.commit}}</samp></p>
-    {{/if}} {{#if model.processObject.storeInfo.adapter.description}}
-    <h4>Store adapter description</h4>
-    <p><samp>{{model.processObject.storeInfo.adapter.description}}</samp></p>
-    {{/if}} {{paper-divider}}
-
-    {{!-- DESCRIBE THE FOSSILIZER INFOS OF A PROCESS --}}
-    <h3>Fossilizer</h3>
-    <p class="light">
-      <small>
+</p>
+<h4>Store adapter name</h4>
+<p><samp>{{model.processObject.storeInfo.adapter.name}}</samp></p>
+{{#if model.processObject.storeInfo.adapter.version}}
+<h4>Store adapter version</h4>
+<p><samp>{{model.processObject.storeInfo.adapter.version}}</samp></p>
+{{/if}} {{#if model.processObject.storeInfo.adapter.commit}}
+<h4>Store adapter commit</h4>
+<p><samp>{{model.processObject.storeInfo.adapter.commit}}</samp></p>
+{{/if}} {{#if model.processObject.storeInfo.adapter.description}}
+<h4>Store adapter description</h4>
+<p><samp>{{model.processObject.storeInfo.adapter.description}}</samp></p>
+{{/if}} {{paper-divider}} {{!-- DESCRIBE THE FOSSILIZER INFOS OF A PROCESS --}}
+<h3>Fossilizers</h3>
+<p class="light">
+  <small>
         A fossilizer adds the steps of your workflow to a timeline, such as a Blockchain or a trusted timestamping authority.
       </small>
-    </p>
-    {{#if model.processObject.fossilizerInfo}}
-    <h4>Fossilizer adapter name</h4>
-    <p><samp>{{model.processObject.fossilizerInfo.adapter.name}}</samp></p>
-
-    {{#if model.processObject.fossilizerInfo.adapter.version}}
-    <h4>Fossilizer adapter version</h4>
-    <p><samp>{{model.processObject.fossilizerInfo.adapter.version}}</samp></p>
-    {{/if}} {{#if model.processObject.fossilizerInfo.adapter.commit}}
-    <h4>Fossilizer adapter commit</h4>
-    <p><samp>{{model.processObject.fossilizerInfo.adapter.commit}}</samp></p>
-    {{/if}} {{#if model.processObject.fossilizerInfo.adapter.description}}
-    <h4>Fossilizer adapter description</h4>
-    <p><samp>{{model.processObject.fossilizerInfo.adapter.description}}</samp></p>
-    {{/if}} {{#if model.processObject.fossilizerInfo.adapter.blockchain}}
-    <h4>Fossilizer adapter blockchain</h4>
-    <p><samp>{{model.processObject.fossilizerInfo.adapter.blockchain}}</samp></p>
-    {{/if}} {{else}}
-    <p>Your agent is not connected to a fossilizer.</p>
-    {{/if}}{{paper-divider}}
-
-{{/paper-content}}
+</p>
+{{#if model.processObject.fossilizersInfo.length }}
+<ul>
+  {{#each model.processObject.fossilizersInfo as |fossilizer|}}
+  <li>
+    <h4>Fossilizer:
+      <samp>{{fossilizer.adapter.name}}</samp>
+    </h4>
+    {{#if fossilizer.adapter.version}}
+    <h4>Adapter version
+      <samp>{{fossilizer.adapter.version}}</samp>
+    </h4>{{/if}} {{#if fossilizer.adapter.commit}}
+    <h4>Adapter commit
+      <samp>{{fossilizer.adapter.commit}}</samp>
+    </h4> {{/if}} {{#if fossilizer.adapter.description}}
+    <h4>Adapter description
+      <samp>{{fossilizer.adapter.description}}</samp>
+    </h4> {{/if}} {{#if fossilizer.adapter.blockchain}}
+    <h4>Adapter blockchain
+      <samp>{{fossilizer.adapter.blockchain}}</samp>
+    </h4>{{/if}}
+  </li>
+  {{/each}}
+</ul> {{else}}
+<p>Your agent is not connected to any fossilizer.</p>
+{{/if}} {{paper-divider}} {{/paper-content}}

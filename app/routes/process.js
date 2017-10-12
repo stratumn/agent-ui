@@ -17,22 +17,21 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-
   stratumn: Ember.inject.service('stratumn'),
 
   model(params) {
-    return this
-      .get('stratumn')
+    return this.get('stratumn')
       .getAgent()
-      .then(agent =>
-        ({ processObject: agent.processes.find(p => p.name === params.process) })
-      );
+      .then(agent => ({
+        processObject: agent.processes.find(p => p.name === params.process)
+      }));
   },
 
   renderTemplate(ctrl, model) {
     this._super();
     this.render('process-toolbar', { into: 'application', outlet: 'toolbar' });
-    this.get('stratumn').getAgent()
+    this.get('stratumn')
+      .getAgent()
       .then(agent =>
         this.render('processes-index', {
           into: 'application',
@@ -41,7 +40,7 @@ export default Ember.Route.extend({
             processes: agent.processes,
             currentProcess: model.processObject.name
           }
-        }));
+        })
+      );
   }
-
 });
